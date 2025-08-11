@@ -1,4 +1,4 @@
-import { roomModule } from "~background/room"
+import { roomModule } from "~background/service/room"
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
   const { msg } = req.body
@@ -27,6 +27,5 @@ const kickHandler: PlasmoMessaging.MessageHandler = async (req, res) => {
   const message = await roomModule.kick(req.body.id)
   res.send(message)
 }
-
 
 export default handler
