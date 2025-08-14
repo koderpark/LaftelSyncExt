@@ -7,6 +7,7 @@ import {
 } from "./socket-handler"
 import { Storage } from "@plasmohq/storage"
 import { logModule } from "./log"
+import { getUrl } from "../const"
 
 const storage = new Storage()
 
@@ -16,14 +17,15 @@ export const socketModule = (() => {
   const connectHost = async (name: string, password?: string) => {
     const username = await storage.get("username")
     if (!username) {
-      await logModule.pushError(
+      await logModule.log(
+        "error",
         "Username is not defined. Please set your username first."
       )
       throw new Error("Username is not defined")
     }
 
     if (instance) await disconnect()
-    instance = io("http://localhost:8081/", {
+    instance = io(`${await getUrl()}`, {
       transports: ["websocket"],
       reconnection: false,
       auth: {
@@ -39,14 +41,15 @@ export const socketModule = (() => {
   const connectPeer = async (roomId: string, password?: string) => {
     const username = await storage.get("username")
     if (!username) {
-      await logModule.pushError(
+      await logModule.log(
+        "error",
         "Username is not defined. Please set your username first."
       )
       throw new Error("Username is not defined")
     }
 
     if (instance) await disconnect()
-    instance = io("http://localhost:8081/", {
+    instance = io(`${await getUrl()}`, {
       transports: ["websocket"],
       reconnection: false,
       auth: {

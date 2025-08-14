@@ -1,3 +1,14 @@
+import { Storage } from "@plasmohq/storage"
+
+const storage = new Storage()
+
+export const getUrl = async () => {
+  const isCanary = await storage.get("isCanary")
+
+  if (isCanary) return process.env.PLASMO_PUBLIC_BE_CANARY!
+  return process.env.PLASMO_PUBLIC_BE_PUBLIC!
+}
+
 export interface Room {
   id: number
   updatedAt: Date

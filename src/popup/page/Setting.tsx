@@ -4,9 +4,11 @@ import packageJson from "../../../package.json"
 import { message } from "~popup/message"
 import { StorageField } from "~popup/component/form"
 import { useState } from "react"
+import { useStorage } from "@plasmohq/storage/hook"
 
 export default function SettingPopup(props) {
   const [count, setCount] = useState(0)
+  const [isCanary, setIsCanary] = useStorage("isCanary")
 
   const handleInfoPage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -25,7 +27,6 @@ export default function SettingPopup(props) {
   const logTest = async () => {
     const res = await message("log/success", { text: `hello world ${count}` })
     setCount(count + 1)
-    console.log(res)
   }
 
   return (
@@ -43,15 +44,21 @@ export default function SettingPopup(props) {
         </Full>
         <div className="flex flex-col gap-2">
           <StorageField storageKey="username" label="사용자 이름" />
-          <div className="flex gap-2">
+          <div className="grid grid-cols-2 gap-2">
             <Btn label="도움말" onClick={handleInfoPage} type="option" />
             <Btn
               label="오류제보/건의"
               onClick={handleReportPage}
               type="option"
             />
+            <Btn
+              label={isCanary ? "개발자 모드 끄기" : "개발자 모드"}
+              onClick={() => setIsCanary(!isCanary)}
+              type={isCanary ? "submit" : "option"}
+            />
+
+            <Btn label="Log Test" onClick={logTest} />
           </div>
-          <Btn label="Log Test" onClick={logTest} />
         </div>
       </Content>
     </Full>
