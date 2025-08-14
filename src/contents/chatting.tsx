@@ -7,8 +7,11 @@ export const config: PlasmoCSConfig = {
 }
 
 export const getInlineAnchor: PlasmoGetInlineAnchor = async () => ({
-  element: document.querySelector(`#root-video-fullscreen #video-controls-below > div:nth-child(2) > div:nth-child(2)`),
+  element: document.querySelector(
+    `#root-video-fullscreen #video-controls-below > div:nth-child(2) > div:nth-child(2)`
+  ),
   insertPosition: "afterbegin"
+})
 
 export const getStyle = () => {
   const style = document.createElement("style")
