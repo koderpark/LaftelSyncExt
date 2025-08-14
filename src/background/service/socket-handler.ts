@@ -3,6 +3,7 @@ import { updateVideo } from "~background/video"
 import type { Room, VidData, Chat } from "~background/const"
 import { Storage } from "@plasmohq/storage"
 import { logModule } from "./log"
+import { chatModule } from "./chat"
 
 const storage = new Storage()
 
@@ -29,6 +30,5 @@ export const disconnectHandler = async () => {
 
 export const chatUpdateHandler = async (data: Chat) => {
   logModule.devLog("chatUpdateHandler")
-  logModule.devLog(JSON.stringify(data))
-  // await chatModule.receive(data)
+  await chatModule.render(data)
 }
