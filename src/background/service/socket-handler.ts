@@ -1,6 +1,6 @@
 import { roomModule } from "~background/service/room"
 import { updateVideo } from "~background/video"
-import type { Room, VidData } from "~background/const"
+import type { Room, VidData, Chat } from "~background/const"
 import { Storage } from "@plasmohq/storage"
 import { logModule } from "./log"
 
@@ -25,4 +25,10 @@ export const disconnectHandler = async () => {
   logModule.devLog("disconnect")
   await storage.set("userId", null)
   await roomModule.exit()
+}
+
+export const chatUpdateHandler = async (data: Chat) => {
+  logModule.devLog("chatUpdateHandler")
+  logModule.devLog(JSON.stringify(data))
+  // await chatModule.receive(data)
 }
