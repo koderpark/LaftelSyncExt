@@ -31,18 +31,21 @@ const ChatElement = (props: Chat) => {
 
 const Chatting = () => {
   const [chat] = useStorage<Chat[]>("chat")
+  const [chatType] = useStorage("chatType")
 
   // todo : suppress keypress event (fullscreen, etc)
   return (
     <div className="absolute top-4 right-4 flex flex-col gap-4">
-      <div className="rounded-[12px] h-10 p-1 flex gap-2 border border-gray-800 w-fit self-end">
+      {/* <div className="rounded-[12px] h-10 p-1 flex gap-2 border border-gray-800 w-fit self-end">
         <input
           className="h-8 text-white bg-transparent border-none outline-none"
           placeholder="채팅 내용을 입력"
         />
         <LuMessageSquare size={32} />
-      </div>
-      {chat && chat.map((v: Chat, i: number) => <ChatElement key={i} {...v} />)}
+      </div> */}
+      {chatType !== "none" &&
+        chat &&
+        chat.map((v: Chat, i: number) => <ChatElement key={i} {...v} />)}
     </div>
   )
 }
