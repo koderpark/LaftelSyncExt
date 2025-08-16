@@ -33,6 +33,41 @@ const ChatTypeSelector = () => {
   )
 }
 
+const ChatTimeSelector = () => {
+  const [chatTime, setChatTime] = useStorage("chatTime", 5)
+  return (
+    <div>
+      <h1 className="text-xl font-bold mb-2">채팅 표시 시간</h1>
+      <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 ">
+        <Btn
+          padding="narrow"
+          label="2초"
+          onClick={() => setChatTime(2)}
+          type={chatTime === 2 ? "submit" : "option"}
+        />
+        <Btn
+          padding="narrow"
+          label="3초"
+          onClick={() => setChatTime(3)}
+          type={chatTime === 3 ? "submit" : "option"}
+        />
+        <Btn
+          padding="narrow"
+          label="5초"
+          onClick={() => setChatTime(5)}
+          type={chatTime === 5 ? "submit" : "option"}
+        />
+        <Btn
+          padding="narrow"
+          label="10초"
+          onClick={() => setChatTime(10)}
+          type={chatTime === 10 ? "submit" : "option"}
+        />
+      </div>
+    </div>
+  )
+}
+
 const TestChatSender = () => {
   const [text, setText] = useState("")
 
@@ -60,6 +95,7 @@ export default function ChatPopup() {
       <Content>
         <div className="flex flex-col gap-8">
           <ChatTypeSelector />
+          <ChatTimeSelector />
           {room && <TestChatSender />}
         </div>
       </Content>

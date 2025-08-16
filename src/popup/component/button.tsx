@@ -3,11 +3,27 @@ const ColorMap = {
   option: "bg-gray-800"
 }
 
-export function Btn(props) {
-  const { label, onClick, submit = true, type = "submit" } = props
+const PaddingMap = {
+  normal: "px-8",
+  narrow: "px-2"
+}
+
+export function Btn({
+  label,
+  onClick,
+  submit = true,
+  type = "submit",
+  padding = "normal"
+}: {
+  label: string
+  onClick?: () => void
+  submit?: boolean
+  type?: "submit" | "option"
+  padding?: "normal" | "narrow"
+}) {
   return (
     <button
-      className={`text-white min-w-20 w-full p-2 rounded-lg block shadow-md ${ColorMap[type]}`}
+      className={`text-white w-full py-2 rounded-lg block shadow-md ${ColorMap[type]} ${PaddingMap[padding]}`}
       onClick={onClick}
       type={submit ? "submit" : "button"}>
       {label}

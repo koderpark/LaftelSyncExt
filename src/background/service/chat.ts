@@ -12,6 +12,7 @@ export const chatModule = (() => {
   }
 
   const render = async (input: Chat) => {
+    const chatTime = await storage.get<number>("chatTime")
     const list = await get()
     list.push(input)
     await set(list)
@@ -20,7 +21,7 @@ export const chatModule = (() => {
       const list = await get()
       list.shift()
       await set(list)
-    }, 5000) // todo: render timeout customize
+    }, chatTime * 1000)
   }
 
   return {
