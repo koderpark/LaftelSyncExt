@@ -41,6 +41,7 @@ const ChatElement = (props: Chat) => {
 const ChatSender = () => {
   const [text, setText] = useState("")
   const [collapsed, setCollapsed] = useStorage("collapsed", true)
+  const [room] = useStorage("room")
 
   const suppress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.stopPropagation()
@@ -83,11 +84,12 @@ const ChatSender = () => {
 const Chatting = () => {
   const [chat] = useStorage<Chat[]>("chat")
   const [chatType] = useStorage("chatType")
+  const [room] = useStorage("room")
 
   // todo : suppress keypress event (fullscreen, etc)
   return (
     <div className="absolute top-4 right-4 flex flex-col gap-4">
-      <ChatSender />
+      {room && <ChatSender />}
       {chatType !== "none" &&
         chat &&
         chat.map((v: Chat, i: number) => <ChatElement key={i} {...v} />)}
