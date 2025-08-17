@@ -22,7 +22,7 @@ function JoinForm() {
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
 
-  const submitJoin = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const submitJoin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     message("room/join", { roomId: id, password })
   }
@@ -30,7 +30,7 @@ function JoinForm() {
   return (
     <div className="flex flex-col">
       <h1 className="text-xl font-bold mb-2">방 참가</h1>
-      <div className="flex gap-2">
+      <form onSubmit={submitJoin} className="flex gap-2">
         <div className="flex flex-col gap-2 grow">
           <StringField label="방 접속 번호" value={id} setValue={setId} />
           <PasswordField
@@ -40,9 +40,9 @@ function JoinForm() {
           />
         </div>
         <div className="flex">
-          <Btn label="참가" onClick={submitJoin} submit={false} />
+          <Btn label="참가" type="submit" />
         </div>
-      </div>
+      </form>
     </div>
   )
 }
@@ -51,7 +51,7 @@ function CreateForm() {
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
 
-  const submitJoin = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const submitJoin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     message("room/create", { name, password })
   }
@@ -59,7 +59,7 @@ function CreateForm() {
   return (
     <div className="flex flex-col">
       <h1 className="text-xl font-bold mb-2">방 생성</h1>
-      <div className="flex gap-2">
+      <form onSubmit={submitJoin} className="flex gap-2">
         <div className="flex flex-col gap-2 grow">
           <StringField label="방 이름" value={name} setValue={setName} />
           <PasswordField
@@ -69,9 +69,9 @@ function CreateForm() {
           />
         </div>
         <div className="flex">
-          <Btn label="생성" onClick={submitJoin} submit={false} />
+          <Btn label="생성" type="submit" />
         </div>
-      </div>
+      </form>
     </div>
   )
 }

@@ -4,7 +4,7 @@ const ColorMap = {
 }
 
 const PaddingMap = {
-  normal: "px-8",
+  normal: "min-w-20",
   narrow: "px-2"
 }
 
@@ -29,4 +29,4 @@ export function Btn({
       {label}
     </button>
   )
-}
+} 
