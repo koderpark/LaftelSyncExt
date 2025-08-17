@@ -16,7 +16,7 @@ export function Btn({
   padding = "normal"
 }: {
   label: string
-  onClick?: () => void
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   submit?: boolean
   type?: "submit" | "option"
   padding?: "normal" | "narrow"
