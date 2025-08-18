@@ -28,6 +28,7 @@ export const updateVideo = async (data: VideoData) => {
     target: { tabId: tab[0].id },
     func: (data: VideoData) => {
       const { url, speed, time, isPaused } = data
+      console.log("updateVideo", data)
 
       if (url != window.location.href) {
         window.location.href = url

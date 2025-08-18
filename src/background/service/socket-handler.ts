@@ -19,6 +19,7 @@ export const roomUpdateHandler = async (body: Room) => {
 
 export const videoUpdateHandler = (data: VidData) => {
   logModule.devLog("videoUpdateHandler")
+  logModule.devLog(JSON.stringify(data))
   updateVideo(data)
 }
 

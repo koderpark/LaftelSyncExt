@@ -1,8 +1,8 @@
 {
-  "name": "laftelsync-ext",
-  "displayName": "Laftelsync ext",
+  "name": "anime-linker-ext",
+  "displayName": "Anime Linker",
   "version": "0.0.1",
-  "description": "laftel play time sync extension",
+  "description": "Laftel.net의 비공식 동시시청 확장프로그램.",
   "author": "koderpark",
   "scripts": {
     "dev": "plasmo dev",
@@ -32,13 +32,15 @@
   },
   "manifest": {
     "host_permissions": [
-      "https://*/*",
-      "ws://*/*",
-      "wss://*/*"
+      "https://*.koder.page/*",
+      "ws://*.koder.page/*",
+      "wss://*.koder.page/*"
     ],
     "permissions": [
       "tabs",
+      "activeTab",
       "webRequest",
+      "webRequestBlocking",
       "scripting"
     ],
     "minimum_chrome_version": "116"
