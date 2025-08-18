@@ -1,6 +1,6 @@
 {
-  "name": "anime-linker-ext",
-  "displayName": "Anime Linker",
+  "name": "ani-relayer",
+  "displayName": "Ani Relayer",
   "version": "0.0.1",
   "description": "Laftel.net의 비공식 동시시청 확장프로그램.",
   "author": "koderpark",
@@ -40,7 +40,6 @@
       "tabs",
       "activeTab",
       "webRequest",
-      "webRequestBlocking",
       "scripting"
     ],
     "minimum_chrome_version": "116"

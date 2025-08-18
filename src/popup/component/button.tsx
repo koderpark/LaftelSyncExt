@@ -1,5 +1,5 @@
 const ColorMap = {
-  submit: "bg-blue-500",
+  submit: "bg-indigo-500",
   option: "bg-gray-800"
 }
 

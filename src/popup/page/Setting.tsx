@@ -5,6 +5,7 @@ import { message } from "~popup/message"
 import { StorageField } from "~popup/component/form"
 import { useState } from "react"
 import { useStorage } from "@plasmohq/storage/hook"
+import icon from "data-base64:assets/icon.png"
 
 export default function SettingPopup(props) {
   const [count, setCount] = useState(0)
@@ -33,12 +34,16 @@ export default function SettingPopup(props) {
     <Full>
       <Content>
         <Full>
-          <div className="flex self-center h-32 w-32 bg-gray-200 mb-4">
-            TODO: logo
+          <div className="flex self-center h-32 w-32 mb-4">
+            <img
+              src={icon}
+              alt="logo"
+              className="w-full h-full object-contain"
+            />
           </div>
           <div className="flex self-center">
             <p className="text-gray-400 text-md">
-              LaftelSyncExt v{packageJson.version}
+              Ani Relayer v{packageJson.version}
             </p>
           </div>
         </Full>
