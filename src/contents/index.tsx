@@ -1,7 +1,10 @@
 import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo"
 import cssText from "data-text:../style.css"
-import { sendToBackground } from "@plasmohq/messaging"
 import { parseVideo } from "./parse"
+import { useStorage } from "@plasmohq/storage/hook"
+import { Parser, NotParsing } from "./component/status"
+import type { Chat } from "~background/const"
+import { ChatElement, ChatSender, Chatting } from "~contents/component/chatting"
 
 export const config: PlasmoCSConfig = {
   matches: ["https://laftel.net/*"]
@@ -23,20 +26,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 })
 
 export default function Injected() {
+  const [room] = useStorage("room")
+  const [chatType] = useStorage("chatType")
+  const [chat] = useStorage<Chat[]>("chat")
+
   return (
     <div>
-      <Parser />
+      {room ? <Parser /> : <NotParsing />}
+      {room && <Chatting />}
     </div>
   )
-}
-
-const Parser = () => {
-  const vid = document.querySelector("video")
-
-  vid?.addEventListener("canplay", parseVideo)
-  vid?.addEventListener("ratechange", parseVideo)
-  vid?.addEventListener("pause", parseVideo)
-  vid?.addEventListener("play", parseVideo)
-
-  return (<div>Parser</div>)
 }
