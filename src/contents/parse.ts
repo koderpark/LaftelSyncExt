@@ -1,39 +1,4 @@
 import { sendToBackground } from "@plasmohq/messaging"
-import type { PlasmoCSConfig } from "plasmo"
-
-export const config: PlasmoCSConfig = {
-  matches: ["https://laftel.net/*"]
-}
-
-const SPAobserver = () => {
-  let beforeUrl = window.location.href
-  const observer = new MutationObserver((mutations) => {
-    if (beforeUrl != window.location.href) {
-      beforeUrl = window.location.href
-      pageLoaded()
-    }
-  })
-  observer.observe(document.documentElement, { childList: true, subtree: true })
-}
-
-const changeHandler = async () => {
-  // const room = JSON.parse(await storage.get("room"))
-  // if (!room?.isOwner) return
-  parseVideo()
-}
-
-const pageLoaded = () => {
-  console.log("page Loaded")
-  const vid = document.querySelector("video")
-
-  vid?.addEventListener("canplay", changeHandler)
-  vid?.addEventListener("ratechange", changeHandler)
-  vid?.addEventListener("pause", changeHandler)
-  vid?.addEventListener("play", changeHandler)
-}
-
-SPAobserver()
-pageLoaded()
 
 export const parseVideo = async () => {
   const video = document.querySelector("video")
@@ -62,21 +27,4 @@ export const parseVideo = async () => {
       data: { title, episode, url, speed, time, isPaused }
     }
   })
-
-  return { title, episode, url, speed, time, isPaused }
 }
-
-// export const parseMetadata = async () => {
-//   const title = document.querySelector("h1.title")
-//   if (!title) return
-
-//   const titleText = title.textContent
-//   const res = await sendToBackground({
-//     name: "metadata",
-//     body: { msg: "update", data: { title: titleText } }
-//   })
-// }
-
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.msg == "parse") changeHandler()
-})

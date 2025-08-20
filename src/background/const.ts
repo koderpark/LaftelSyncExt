@@ -53,4 +53,10 @@ export interface RoomMetadata {
   }[]
 }
 
+export interface Chat {
+  senderId: string
+  senderName: string
+  message: string
+}
+
 export type Page = "login" | "main" | "room" | "setting" | "chat"

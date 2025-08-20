@@ -3,7 +3,9 @@ import {
   connectHandler,
   disconnectHandler,
   roomUpdateHandler,
-  videoUpdateHandler
+  videoUpdateHandler,
+  chatUpdateHandler,
+  connectErrorHandler
 } from "./socket-handler"
 import { Storage } from "@plasmohq/storage"
 import { logModule } from "./log"
@@ -35,6 +37,7 @@ export const socketModule = (() => {
         password
       }
     })
+    await storage.set("userType", "host")
     handler()
   }
 
@@ -59,6 +62,7 @@ export const socketModule = (() => {
         password
       }
     })
+    await storage.set("userType", "peer")
     handler()
   }
 
@@ -68,6 +72,8 @@ export const socketModule = (() => {
     instance.on("roomChanged", roomUpdateHandler)
     instance.on("videoChanged", videoUpdateHandler)
     instance.on("disconnect", disconnectHandler)
+    instance.on("chat", chatUpdateHandler)
+    instance.on("connect_error", connectErrorHandler)
   }
 
   const disconnect = async () => {

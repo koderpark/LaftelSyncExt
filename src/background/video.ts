@@ -1,3 +1,8 @@
+import { socketModule } from "./service/socket"
+import { Storage } from "@plasmohq/storage"
+
+const storage = new Storage()
+
 export type VideoData = {
   url: string
   speed: number
@@ -23,6 +28,7 @@ export const updateVideo = async (data: VideoData) => {
     target: { tabId: tab[0].id },
     func: (data: VideoData) => {
       const { url, speed, time, isPaused } = data
+      console.log("updateVideo", data)
 
       if (url != window.location.href) {
         window.location.href = url
@@ -39,4 +45,11 @@ export const updateVideo = async (data: VideoData) => {
     },
     args: [data]
   })
+}
+
+export const sendVideo = async (data: VideoData) => {
+  const userType = await storage.get("userType")
+  if (userType == "host") {
+    socketModule.send("video", data)
+  }
 }
