@@ -33,3 +33,8 @@ export const chatUpdateHandler = async (data: Chat) => {
   logModule.devLog("chatUpdateHandler")
   await chatModule.render(data)
 }
+
+export const connectErrorHandler = async () => {
+  logModule.log("error", "서버 접속 실패, 개발자에게 문의해주세요")
+  await roomModule.exit()
+}
