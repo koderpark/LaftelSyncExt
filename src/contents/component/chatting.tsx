@@ -3,23 +3,8 @@ import cssText from "data-text:../style.css"
 import { LuMessageSquare, LuSend } from "react-icons/lu"
 import { useEffect, useState } from "react"
 import { useStorage } from "@plasmohq/storage/hook"
-import type { Chat } from "~background/const"
 import { message } from "~popup/message"
-
-export const config: PlasmoCSConfig = {
-  matches: ["*://laftel.net/*"]
-}
-
-export const getInlineAnchor: PlasmoGetInlineAnchor = async () => ({
-  element: document.querySelector(`#root-video-fullscreen`),
-  insertPosition: "afterbegin"
-})
-
-export const getStyle = () => {
-  const style = document.createElement("style")
-  style.textContent = cssText.replaceAll(":root", ":host(plasmo-csui)")
-  return style
-}
+import type { Chat } from "~background/const"
 
 const ChatWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -29,7 +14,7 @@ const ChatWrapper = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const ChatElement = (props: Chat) => {
+export const ChatElement = (props: Chat) => {
   const { senderName, message } = props
   return (
     <ChatWrapper>
@@ -38,10 +23,9 @@ const ChatElement = (props: Chat) => {
   )
 }
 
-const ChatSender = () => {
+export const ChatSender = () => {
   const [text, setText] = useState("")
   const [collapsed, setCollapsed] = useStorage("collapsed", true)
-  const [room] = useStorage("room")
 
   const suppress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.stopPropagation()
@@ -81,20 +65,16 @@ const ChatSender = () => {
   )
 }
 
-const Chatting = () => {
-  const [chat] = useStorage<Chat[]>("chat")
+export const Chatting = () => {
   const [chatType] = useStorage("chatType")
-  const [room] = useStorage("room")
+  const [chat] = useStorage<Chat[]>("chat")
 
-  // todo : suppress keypress event (fullscreen, etc)
   return (
     <div className="absolute top-4 right-4 flex flex-col gap-4">
-      {room && <ChatSender />}
+      <ChatSender />
       {chatType !== "none" &&
         chat &&
         chat.map((v: Chat, i: number) => <ChatElement key={i} {...v} />)}
     </div>
   )
 }
-
-export default Chatting
