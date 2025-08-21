@@ -23,7 +23,6 @@ chrome.action.setBadgeText({
 
 chrome.runtime.onInstalled.addListener(() => {
   // todo: 불필요한 값들 제거, user객체 하나로 합치기.
-  storage.set("chat", [])
   storage.set("chatTime", 5)
   storage.set("chatType", "normal")
   storage.set("collapsed", true)
