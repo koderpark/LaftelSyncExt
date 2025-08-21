@@ -1,5 +1,5 @@
 import { Storage } from "@plasmohq/storage"
-import type { Chat } from "../const"
+import type { Chat } from "~const"
 const storage = new Storage()
 
 export const chatModule = (() => {

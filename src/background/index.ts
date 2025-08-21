@@ -2,7 +2,7 @@
 // import * as validate from "./validate"
 // import * as auth from "./auth"
 import * as socket from "./service/socket"
-import * as page from "./service/page"
+import * as page from "./page"
 
 export { socket, page }
 
@@ -28,7 +28,6 @@ chrome.runtime.onInstalled.addListener(() => {
   storage.set("chatType", "normal")
   storage.set("collapsed", true)
   storage.set("isCanary", false)
-  storage.set("log", [])
   storage.set("page", "main")
   storage.set("room", null)
   storage.set("userId", null)

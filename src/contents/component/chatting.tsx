@@ -4,7 +4,7 @@ import { LuMessageSquare, LuSend } from "react-icons/lu"
 import { useEffect, useState } from "react"
 import { useStorage } from "@plasmohq/storage/hook"
 import { message } from "~popup/message"
-import type { Chat } from "~background/const"
+import type { Chat } from "~const"
 
 const ChatWrapper = ({ children }: { children: React.ReactNode }) => {
   return (

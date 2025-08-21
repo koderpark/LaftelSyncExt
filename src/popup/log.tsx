@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import type { Log } from "~background/const"
+import type { Log } from "~const"
 import { useStorage } from "@plasmohq/storage/hook"
 
 function LogElement(props: Log) {
