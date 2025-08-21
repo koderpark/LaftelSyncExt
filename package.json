@@ -1,7 +1,7 @@
 {
   "name": "ani-relayer",
   "displayName": "Ani Relayer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Laftel.net의 비공식 동시시청 확장프로그램.",
   "author": "koderpark",
   "scripts": {
@@ -32,14 +32,12 @@
   },
   "manifest": {
     "host_permissions": [
-      "https://*.koder.page/*",
-      "ws://*.koder.page/*",
-      "wss://*.koder.page/*"
+      "*://*.koder.page/*",
+      "https://laftel.net/*"
     ],
     "permissions": [
       "tabs",
       "activeTab",
-      "webRequest",
       "scripting"
     ],
     "minimum_chrome_version": "116"

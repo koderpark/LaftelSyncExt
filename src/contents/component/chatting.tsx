@@ -4,7 +4,7 @@ import { LuMessageSquare, LuSend } from "react-icons/lu"
 import { useEffect, useState } from "react"
 import { useStorage } from "@plasmohq/storage/hook"
 import { message } from "~popup/message"
-import type { Chat } from "~background/const"
+import type { Chat, Log } from "~const"
 
 const ChatWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -67,7 +67,24 @@ export const ChatSender = () => {
 
 export const Chatting = () => {
   const [chatType] = useStorage("chatType")
-  const [chat] = useStorage<Chat[]>("chat")
+  const [chatTime] = useStorage("chatTime")
+  const [chat, setChat] = useState<Chat[]>([])
+
+  useEffect(() => {
+    const messageListener = async (message: any) => {
+      if (message?.action === "chat" && message?.payload) {
+        const newChat = message.payload as Chat
+        setChat((prev) => [...prev, newChat])
+
+        setTimeout(() => {
+          setChat((prev) => prev.filter((chat) => chat !== newChat))
+        }, chatTime * 1000)
+      }
+    }
+
+    chrome.runtime.onMessage.addListener(messageListener)
+    return () => chrome.runtime.onMessage.removeListener(messageListener)
+  }, [chatTime])
 
   return (
     <div className="absolute top-4 right-4 flex flex-col gap-4">

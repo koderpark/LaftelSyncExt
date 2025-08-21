@@ -1,7 +1,3 @@
-import { Storage } from "@plasmohq/storage"
-import type { Page } from "~background/const"
-const storage = new Storage()
-
 export async function newTab(url: string) {
   await chrome.tabs.create({ url })
 }

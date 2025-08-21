@@ -9,7 +9,7 @@ import {
 } from "./socket-handler"
 import { Storage } from "@plasmohq/storage"
 import { logModule } from "./log"
-import { getUrl } from "../const"
+import { getUrl } from "~const"
 
 const storage = new Storage()
 

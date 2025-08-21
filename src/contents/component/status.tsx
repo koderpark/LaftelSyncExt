@@ -1,4 +1,4 @@
-import { parseVideo } from "~contents/parse"
+import { parseVideo } from "~parse"
 
 export const Parser = () => {
   const vid = document.querySelector("video")
