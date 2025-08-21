@@ -32,9 +32,8 @@
   },
   "manifest": {
     "host_permissions": [
-      "https://*.koder.page/*",
-      "ws://*.koder.page/*",
-      "wss://*.koder.page/*"
+      "*://*.koder.page/*",
+      "https://laftel.net/*"
     ],
     "permissions": [
       "tabs",
