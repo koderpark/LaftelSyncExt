@@ -38,7 +38,6 @@ export const socketModule = (() => {
         password
       }
     })
-    await storage.set("userType", "host")
     handler()
   }
 
@@ -63,7 +62,6 @@ export const socketModule = (() => {
         password
       }
     })
-    await storage.set("userType", "peer")
     handler()
   }
 
