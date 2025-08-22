@@ -2,7 +2,7 @@
 // import * as validate from "./validate"
 // import * as auth from "./auth"
 import * as socket from "./service/socket"
-import * as page from "./service/page"
+import * as page from "./page"
 
 export { socket, page }
 
@@ -23,12 +23,10 @@ chrome.action.setBadgeText({
 
 chrome.runtime.onInstalled.addListener(() => {
   // todo: 불필요한 값들 제거, user객체 하나로 합치기.
-  storage.set("chat", [])
   storage.set("chatTime", 5)
   storage.set("chatType", "normal")
   storage.set("collapsed", true)
   storage.set("isCanary", false)
-  storage.set("log", [])
   storage.set("page", "main")
   storage.set("room", null)
   storage.set("userId", null)

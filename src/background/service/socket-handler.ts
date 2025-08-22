@@ -1,6 +1,6 @@
 import { roomModule } from "~background/service/room"
 import { updateVideo } from "~background/video"
-import type { Room, VidData, Chat } from "~background/const"
+import type { Room, VidData, Chat } from "~const"
 import { Storage } from "@plasmohq/storage"
 import { logModule } from "./log"
 import { chatModule } from "./chat"
