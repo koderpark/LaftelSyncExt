@@ -36,6 +36,14 @@ export interface User {
   host?: Room
 }
 
+export interface UserInfo {
+  id: string
+  createdAt: Date
+  name: string
+  roomId: number
+  isHost: boolean
+}
+
 export interface Log {
   type: "success" | "error"
   message: string
