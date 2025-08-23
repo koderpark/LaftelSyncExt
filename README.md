@@ -15,6 +15,12 @@ laftel에서 제공하고 있는 애니메이션들을, DRM 우회 없이 서로
 
 **⚠️ laftel과는 관련이 없는 서드파티 프로그램입니다.**
 
+## Stack
+
+- [Plasmo](https://www.plasmo.com/) for the Extension itself.
+- [SocketIO](https://socket.io/) for realtime BE communication.
+- [Nestjs](https://nestjs.com/) for Backend Server.
+
 ## Builds(for Beta-Testing)
 ```bash
 pnpm install
