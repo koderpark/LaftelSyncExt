@@ -7,17 +7,18 @@ import { Btn } from "~popup/component/button"
 import { LuUser, LuCrown } from "react-icons/lu"
 import { Label } from "~popup/component/label"
 import { message } from "~popup/message"
-import type { RoomMetadata } from "~const"
+import type { RoomMetadata, UserInfo } from "~const"
 
 export default function RoomPopup(props) {
   const [room] = useStorage<RoomMetadata | null>("room")
-  const [userId] = useStorage<string | null>("userId")
+  const [user] = useStorage<UserInfo | null>("user")
 
   const exit = async () => {
     await message("room/exit")
   }
 
-  const isHost = room?.host === userId
+  const userId = user?.id
+  const isHost = user?.isHost
 
   return (
     <Full>
@@ -31,7 +32,7 @@ export default function RoomPopup(props) {
           <p className="font-bold text-gray-950 text-2xl mb-4">방 접속자</p>
           <div className="flex flex-col gap-2">
             {room?.user?.length == 0 && <p>방 접속자가 없습니다.</p>}
-            {room?.user && room.user.map((user) => Peer(user, userId, isHost))}
+            {room?.user && room.user.map((peer) => Peer(peer, user))}
           </div>
         </div>
         <div className="flex flex-col gap-2">
@@ -49,12 +50,9 @@ export default function RoomPopup(props) {
   )
 }
 
-function Peer(
-  peer: RoomMetadata["user"][number],
-  userId: string,
-  isHost: boolean
-) {
-  const isMe = peer.id === userId
+function Peer(peer: RoomMetadata["user"][number], user: UserInfo | null) {
+  const isMe = peer.id === user?.id
+  const isHost = user?.isHost
 
   const kickHandler = () => {
     message("room/kick", {
