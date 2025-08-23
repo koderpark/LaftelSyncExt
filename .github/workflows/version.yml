@@ -44,9 +44,6 @@ jobs:
           VERSION=${{ steps.extract-version.outputs.version }}
           pnpm version $VERSION --no-git-tag-version
 
-      - name: Commit & Push
+      - name: Push changes
         run: |
-          VERSION=${{ steps.extract-version.outputs.version }}
-          git add package.json pnpm-lock.yaml
-          git commit -m "chore: bump version to v$VERSION"
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/koderpark/ani-relayer.git develop --follow-tags
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/koderpark/ani-relayer.git HEAD:develop --follow-tags
