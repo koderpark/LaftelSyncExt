@@ -9,6 +9,9 @@ jobs:
   version-bump:
     if: startsWith(github.event.pull_request.title, 'v')
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
