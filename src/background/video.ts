@@ -1,6 +1,5 @@
 import { socketModule } from "./service/socket"
 import { Storage } from "@plasmohq/storage"
-import type { UserInfo } from "~const"
 
 const storage = new Storage()
 
@@ -49,8 +48,8 @@ export const updateVideo = async (data: VideoData) => {
 }
 
 export const sendVideo = async (data: VideoData) => {
-  const user = await storage.get<UserInfo | null>("user")
-  if (user?.isHost) {
+  const userType = await storage.get("userType")
+  if (userType == "host") {
     socketModule.send("video", data)
   }
 }

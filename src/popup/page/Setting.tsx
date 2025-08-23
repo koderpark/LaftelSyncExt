@@ -14,14 +14,14 @@ export default function SettingPopup(props) {
   const handleInfoPage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     message("page/newTab", {
-      url: "https://github.com/koderpark/ani-relayer"
+      url: "https://blog.koder.page/laftelsync"
     })
   }
 
   const handleReportPage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     message("page/newTab", {
-      url: "https://github.com/koderpark/ani-relayer/issues"
+      url: "https://github.com/koderpark/laftelSyncExt/issues"
     })
   }
 
