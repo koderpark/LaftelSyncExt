@@ -1,6 +1,7 @@
 import { useStorage } from "@plasmohq/storage/hook"
 
 const HeaderMap = {
+  login: "LaftelSync 로그인",
   main: "같이 시청하기",
   setting: "설정",
   chat: "채팅"
