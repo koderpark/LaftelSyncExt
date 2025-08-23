@@ -1,0 +1,16 @@
+name: Publish
+
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+jobs:
+  version-bump:
+    if: startsWith(github.event.pull_request.title, 'v') && github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
