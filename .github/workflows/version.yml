@@ -47,3 +47,4 @@ jobs:
       - name: Push changes
         run: |
           git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/koderpark/ani-relayer.git HEAD:develop --follow-tags
+          
