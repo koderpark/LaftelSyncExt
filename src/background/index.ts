@@ -29,7 +29,6 @@ chrome.runtime.onInstalled.addListener(() => {
   storage.set("isCanary", false)
   storage.set("page", "main")
   storage.set("room", null)
-  storage.set("userId", null)
-  storage.set("userType", null)
+  storage.set("user", null)
   storage.set("username", null)
 })
