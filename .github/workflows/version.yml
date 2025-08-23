@@ -33,16 +33,15 @@ jobs:
             exit 1
           fi
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Bump version
         run: |
           VERSION=${{ steps.extract-version.outputs.version }}
-          npm version $VERSION --no-git-tag-version
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
+          pnpm version $VERSION --no-git-tag-version
 
       - name: Commit & Push
         run: |
