@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: write
       packages: write
-      
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -49,4 +49,4 @@ jobs:
           VERSION=${{ steps.extract-version.outputs.version }}
           git add package.json pnpm-lock.yaml
           git commit -m "chore: bump version to v$VERSION"
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/koderpark/ani-relayer.git main --follow-tags
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/koderpark/ani-relayer.git develop --follow-tags
