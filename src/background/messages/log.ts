@@ -1,5 +1,6 @@
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 import { logModule } from "~background/service/log"
+import { socketModule } from "~background/service/socket"
 
 const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
   const { msg } = req.body
@@ -17,6 +18,7 @@ const testHandler: PlasmoMessaging.MessageHandler = async (req, res) => {
 const errorHandler: PlasmoMessaging.MessageHandler = async (req, res) => {
   const { text } = req.body
   await logModule.log("error", text)
+  socketModule.send("test", { text: "hello world" })
   res.send({ status: "ok" })
 }
 

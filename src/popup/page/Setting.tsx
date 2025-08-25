@@ -21,12 +21,12 @@ export default function SettingPopup(props) {
   const handleReportPage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     message("page/newTab", {
-      url: "https://github.com/koderpark/ani-relayer/issues"
+      url: "https://discord.gg/dq3UBQdkqe"
     })
   }
 
   const logTest = async () => {
-    const res = await message("log/success", { text: `hello world ${count}` })
+    const res = await message("log/error", { text: `hello world ${count}` })
     setCount(count + 1)
   }
 
@@ -62,7 +62,7 @@ export default function SettingPopup(props) {
               type={isCanary ? "submit" : "option"}
             />
 
-            <Btn label="Log Test" onClick={logTest} />
+            <Btn label="Test" onClick={logTest} />
           </div>
         </div>
       </Content>
