@@ -1,5 +1,5 @@
 import { Storage } from "@plasmohq/storage"
-import type { Room } from "~const"
+import type { RoomMetadata } from "~const"
 import { socketModule } from "./socket"
 
 const storage = new Storage()
@@ -18,7 +18,7 @@ export const roomModule = (() => {
     await storage.set("room", null)
   }
 
-  const update = async (room: Room) => {
+  const update = async (room: RoomMetadata) => {
     if (room === null) return exit()
     await storage.set("room", room)
   }

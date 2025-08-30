@@ -1,6 +1,5 @@
 import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo"
 import cssText from "data-text:../style.css"
-import { parseVideo } from "../parse"
 import { useStorage } from "@plasmohq/storage/hook"
 import { Parser, NotParsing } from "./component/status"
 import { Chatting } from "~contents/component/chatting"
