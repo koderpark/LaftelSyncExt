@@ -4,11 +4,22 @@ import { useEffect } from "react"
 export const Parser = () => {
   useEffect(() => {
     const vid = document.querySelector("video")
-    vid?.addEventListener("canplay", parseVideo)
-    vid?.addEventListener("ratechange", parseVideo)
-    vid?.addEventListener("pause", parseVideo)
-    vid?.addEventListener("play", parseVideo)
-    setInterval(parseVideo, 30000)
+    if (!vid) return
+
+    vid.addEventListener("seeked", parseVideo)
+    vid.addEventListener("pause", parseVideo)
+    vid.addEventListener("play", parseVideo)
+    vid.addEventListener("ratechange", parseVideo)
+
+    const interval = setInterval(parseVideo, 60000)
+
+    return () => {
+      vid.removeEventListener("seeked", parseVideo)
+      vid.removeEventListener("pause", parseVideo)
+      vid.removeEventListener("play", parseVideo)
+      vid.removeEventListener("ratechange", parseVideo)
+      clearInterval(interval)
+    }
   }, [])
 
   return (
