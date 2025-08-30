@@ -26,9 +26,12 @@ chrome.runtime.onInstalled.addListener(() => {
   storage.set("chatTime", 5)
   storage.set("chatType", "normal")
   storage.set("collapsed", true)
-  storage.set("isCanary", false)
+  storage.set("isCanary", process.env.NODE_ENV === "development")
   storage.set("page", "main")
   storage.set("room", null)
   storage.set("user", null)
-  storage.set("username", null)
+  storage.set(
+    "username",
+    process.env.NODE_ENV === "development" ? "test_user" : null
+  )
 })
