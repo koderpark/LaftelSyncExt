@@ -8,7 +8,7 @@ import type { Chat, Log } from "~const"
 
 const ChatWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="rounded-[12px] p-2 border border-gray-500/50 bg-gray-900/50 self-end w-fit">
+    <div className="rounded-[8px] px-2.5 py-1.5 border border-gray-700/50 bg-gray-900/50 self-end w-fit font-semibold text-xl text-gray-50">
       {children}
     </div>
   )
@@ -39,11 +39,11 @@ export const ChatSender = () => {
 
   return (
     <ChatWrapper>
-      <div className="flex gap-4 h-8">
+      <div className="flex gap-4">
         {!collapsed && (
           <form onSubmit={sendChat} className="flex gap-4">
             <input
-              className="h-8 ps-1 text-white bg-transparent border-none outline-none placeholder:text-white w-[15rem]"
+              className="text-white bg-transparent border-none outline-none placeholder:text-white w-[15rem]"
               placeholder="채팅 내용을 입력"
               onKeyDown={suppress}
               onKeyUp={suppress}
@@ -51,12 +51,12 @@ export const ChatSender = () => {
               onChange={(e) => setText(e.target.value)}
             />
             <button type="submit" className="cursor-pointer">
-              <LuSend size={32} />
+              <LuSend size={24} />
             </button>
           </form>
         )}
         <LuMessageSquare
-          size={32}
+          size={24}
           onClick={() => setCollapsed(!collapsed)}
           className="cursor-pointer"
         />
@@ -87,7 +87,7 @@ export const Chatting = () => {
   }, [chatTime])
 
   return (
-    <div className="absolute top-4 right-4 flex flex-col gap-4">
+    <div className="absolute top-6 right-6 flex flex-col gap-3">
       <ChatSender />
       {chatType !== "none" &&
         chat &&
