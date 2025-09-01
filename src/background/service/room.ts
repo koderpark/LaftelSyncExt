@@ -1,15 +1,24 @@
 import { Storage } from "@plasmohq/storage"
 import type { RoomMetadata } from "~const"
 import { socketModule } from "./socket"
+import { logModule } from "./log"
 
 const storage = new Storage()
 
 export const roomModule = (() => {
   const create = async (name: string, password?: string) => {
+    if (name === "") {
+      logModule.log("error", "방 이름은 비어있을 수 없습니다.")
+      return
+    }
     await socketModule.connectHost(name, password)
   }
 
   const join = async (roomId: string, password?: string) => {
+    if (roomId === "") {
+      logModule.log("error", "방 번호는 비어있을 수 없습니다.")
+      return
+    }
     await socketModule.connectPeer(roomId, password)
   }
 
