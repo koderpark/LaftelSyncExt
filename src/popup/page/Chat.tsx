@@ -68,26 +68,6 @@ const ChatTimeSelector = () => {
   )
 }
 
-const TestChatSender = () => {
-  const [text, setText] = useState("")
-
-  const sendChat = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    message("chat/send", { text })
-    setText("")
-  }
-
-  return (
-    <div>
-      <h1 className="text-xl font-bold mb-2">채팅 전송(beta)</h1>
-      <form onSubmit={sendChat} className="flex flex-col gap-2">
-        <StringField label="채팅 내용" value={text} setValue={setText} />
-        <Btn label="전송" type="submit" />
-      </form>
-    </div>
-  )
-}
-
 export default function ChatPopup() {
   const [room] = useStorage("room")
   return (
@@ -96,7 +76,6 @@ export default function ChatPopup() {
         <div className="flex flex-col gap-8">
           <ChatTypeSelector />
           <ChatTimeSelector />
-          {room && <TestChatSender />}
         </div>
       </Content>
     </Full>
