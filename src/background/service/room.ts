@@ -15,11 +15,11 @@ export const roomModule = (() => {
   }
 
   const join = async (roomId: string, password?: string) => {
-    if (roomId === "") {
-      logModule.log("error", "방 번호는 비어있을 수 없습니다.")
+    if (roomId === "" || isNaN(Number(roomId))) {
+      logModule.log("error", "방 번호는 숫자여야 합니다.")
       return
     }
-    await socketModule.connectPeer(roomId, password)
+    await socketModule.connectPeer(roomId, password) // Todo: connect failed fallback
   }
 
   const exit = async () => {
