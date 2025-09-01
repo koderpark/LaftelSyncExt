@@ -9,8 +9,8 @@ import MainPopup from "~popup/page/Main"
 import RoomPopup from "~popup/page/Room"
 import SettingPopup from "~popup/page/Setting"
 
-import Header from "~popup/layout/header"
-import Navbar from "~popup/layout/nav"
+import Header from "~component/header"
+import Navbar from "~component/nav"
 import ChatPopup from "./page/Chat"
 import { LogRenderer } from "./log"
 
