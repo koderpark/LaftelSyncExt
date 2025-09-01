@@ -8,7 +8,7 @@ import type { Chat, Log } from "~const"
 
 const ChatWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="rounded-[8px] px-2.5 py-1.5 border border-gray-700/50 bg-gray-900/50 self-end w-fit font-semibold text-xl text-gray-50">
+    <div className="rounded-[8px] p-2 border border-gray-700/50 bg-gray-900/50 self-end w-fit font-semibold text-xl text-gray-50">
       {children}
     </div>
   )
@@ -18,7 +18,8 @@ export const ChatElement = (props: Chat) => {
   const { senderName, message } = props
   return (
     <ChatWrapper>
-      {senderName}: {message}
+      <span className="text-gray-400">{senderName} : </span>
+      <span>{message}</span>
     </ChatWrapper>
   )
 }
@@ -43,7 +44,7 @@ export const ChatSender = () => {
         {!collapsed && (
           <form onSubmit={sendChat} className="flex gap-4">
             <input
-              className="text-white bg-transparent border-none outline-none placeholder:text-white w-[15rem]"
+              className="ps-0.5 text-white bg-transparent border-none outline-none placeholder:text-white w-[15rem]"
               placeholder="채팅 내용을 입력"
               onKeyDown={suppress}
               onKeyUp={suppress}
@@ -51,12 +52,12 @@ export const ChatSender = () => {
               onChange={(e) => setText(e.target.value)}
             />
             <button type="submit" className="cursor-pointer">
-              <LuSend size={24} />
+              <LuSend size={28} />
             </button>
           </form>
         )}
         <LuMessageSquare
-          size={24}
+          size={28}
           onClick={() => setCollapsed(!collapsed)}
           className="cursor-pointer"
         />
