@@ -41,12 +41,6 @@ const ChatTimeSelector = () => {
       <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 ">
         <Btn
           padding="narrow"
-          label="2초"
-          onClick={() => setChatTime(2)}
-          type={chatTime === 2 ? "submit" : "option"}
-        />
-        <Btn
-          padding="narrow"
           label="3초"
           onClick={() => setChatTime(3)}
           type={chatTime === 3 ? "submit" : "option"}
@@ -62,6 +56,12 @@ const ChatTimeSelector = () => {
           label="10초"
           onClick={() => setChatTime(10)}
           type={chatTime === 10 ? "submit" : "option"}
+        />
+        <Btn
+          padding="narrow"
+          label="20초"
+          onClick={() => setChatTime(20)}
+          type={chatTime === 20 ? "submit" : "option"}
         />
       </div>
     </div>
