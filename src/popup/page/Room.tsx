@@ -1,11 +1,9 @@
 import { useContext, useEffect } from "react"
-import { Pill } from "~popup/component/pill"
-import { Content, Full } from "~popup/component/layout"
+import { Content, Full } from "~component/layout"
 import { sendToBackground } from "@plasmohq/messaging"
 import { useStorage } from "@plasmohq/storage/hook"
-import { Btn } from "~popup/component/button"
+import { Btn } from "~component/button"
 import { LuUser, LuCrown } from "react-icons/lu"
-import { Label } from "~popup/component/label"
 import { message } from "~popup/message"
 import type { RoomMetadata, UserInfo } from "~const"
 
@@ -16,9 +14,6 @@ export default function RoomPopup(props) {
   const exit = async () => {
     await message("room/exit")
   }
-
-  const userId = user?.id
-  const isHost = user?.isHost
 
   return (
     <Full>

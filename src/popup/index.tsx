@@ -3,7 +3,7 @@ import "../style.css"
 import { useContext, useEffect, useState } from "react"
 import { sendToBackground } from "@plasmohq/messaging"
 import { useStorage } from "@plasmohq/storage/hook"
-import { Full } from "~popup/component/layout"
+import { Full } from "~component/layout"
 
 import MainPopup from "~popup/page/Main"
 import RoomPopup from "~popup/page/Room"

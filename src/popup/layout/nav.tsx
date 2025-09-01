@@ -1,5 +1,5 @@
 import { useStorage } from "@plasmohq/storage/hook"
-import { PillBtn } from "../component/pill"
+import { PillBtn } from "../../component/pill"
 import { LuDoorOpen, LuMessageSquare, LuSettings } from "react-icons/lu"
 export default function Navbar() {
   const [page, setPage] = useStorage("page")

@@ -4,7 +4,7 @@ import type { RoomMetadata, VidData, Chat, UserInfo } from "~const"
 import { Storage } from "@plasmohq/storage"
 import { logModule } from "./log"
 import { chatModule } from "./chat"
-import { userModule } from "~background/user"
+import { userModule } from "~background/service/user"
 
 export const connectHandler = async (id: string) => {
   logModule.devLog("connect")

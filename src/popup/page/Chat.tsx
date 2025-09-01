@@ -1,11 +1,11 @@
-import { Full } from "~popup/component/layout"
+import { Full } from "~component/layout"
 
-import { Content } from "~popup/component/layout"
+import { Content } from "~component/layout"
 import { useStorage } from "@plasmohq/storage/hook"
-import { Btn } from "~popup/component/button"
+import { Btn } from "~component/button"
 import { useState } from "react"
 import { message } from "~popup/message"
-import { StringField } from "~popup/component/form"
+import { StringField } from "~component/form"
 
 const ChatTypeSelector = () => {
   const [chatType, setChatType] = useStorage("chatType", "normal")
