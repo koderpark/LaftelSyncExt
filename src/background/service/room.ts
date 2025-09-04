@@ -1,16 +1,25 @@
 import { Storage } from "@plasmohq/storage"
-import type { Room } from "~const"
+import type { RoomMetadata } from "~const"
 import { socketModule } from "./socket"
+import { logModule } from "./log"
 
 const storage = new Storage()
 
 export const roomModule = (() => {
   const create = async (name: string, password?: string) => {
+    if (name === "") {
+      logModule.log("error", "방 이름은 비어있을 수 없습니다.")
+      return
+    }
     await socketModule.connectHost(name, password)
   }
 
   const join = async (roomId: string, password?: string) => {
-    await socketModule.connectPeer(roomId, password)
+    if (roomId === "" || isNaN(Number(roomId))) {
+      logModule.log("error", "방 번호는 숫자여야 합니다.")
+      return
+    }
+    await socketModule.connectPeer(roomId, password) // Todo: connect failed fallback
   }
 
   const exit = async () => {
@@ -18,7 +27,7 @@ export const roomModule = (() => {
     await storage.set("room", null)
   }
 
-  const update = async (room: Room) => {
+  const update = async (room: RoomMetadata) => {
     if (room === null) return exit()
     await storage.set("room", room)
   }

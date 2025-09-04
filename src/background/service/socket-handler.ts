@@ -4,7 +4,7 @@ import type { RoomMetadata, VidData, Chat, UserInfo } from "~const"
 import { Storage } from "@plasmohq/storage"
 import { logModule } from "./log"
 import { chatModule } from "./chat"
-import { userModule } from "~background/user"
+import { userModule } from "~background/service/user"
 
 export const connectHandler = async (id: string) => {
   logModule.devLog("connect")
@@ -17,18 +17,18 @@ export const roomUpdateHandler = async (body: RoomMetadata) => {
 
 export const videoUpdateHandler = (data: VidData) => {
   logModule.devLog("videoUpdateHandler")
-  logModule.devLog(JSON.stringify(data))
+  // logModule.devLog(JSON.stringify(data))
   updateVideo(data)
 }
 
 export const disconnectHandler = async () => {
-  logModule.devLog("disconnect")
+  logModule.log("error", "서버와 연결이 끊어졌습니다.")
   await userModule.set(null)
   await roomModule.exit()
 }
 
 export const chatUpdateHandler = async (data: Chat) => {
-  logModule.devLog("chatUpdateHandler")
+  // logModule.devLog("chatUpdateHandler")
   await chatModule.render(data)
 }
 

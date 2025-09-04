@@ -9,18 +9,6 @@ export const getUrl = async () => {
   return process.env.PLASMO_PUBLIC_BE_PUBLIC!
 }
 
-// export interface Room {
-//   id: number
-//   updatedAt: Date
-//   name: string
-//   password?: string
-//   vidTitle: string
-//   vidEpisode: string
-//   vidData: VidData
-//   host: User
-//   users: User[]
-// }
-
 export interface VidData {
   url: string
   speed: number

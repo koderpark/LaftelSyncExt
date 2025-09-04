@@ -1,11 +1,11 @@
-import { Full } from "~popup/component/layout"
+import { Full } from "~component/layout"
 
-import { Content } from "~popup/component/layout"
+import { Content } from "~component/layout"
 import { useStorage } from "@plasmohq/storage/hook"
-import { Btn } from "~popup/component/button"
+import { Btn } from "~component/button"
 import { useState } from "react"
 import { message } from "~popup/message"
-import { StringField } from "~popup/component/form"
+import { StringField } from "~component/form"
 
 const ChatTypeSelector = () => {
   const [chatType, setChatType] = useStorage("chatType", "normal")
@@ -41,12 +41,6 @@ const ChatTimeSelector = () => {
       <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 ">
         <Btn
           padding="narrow"
-          label="2초"
-          onClick={() => setChatTime(2)}
-          type={chatTime === 2 ? "submit" : "option"}
-        />
-        <Btn
-          padding="narrow"
           label="3초"
           onClick={() => setChatTime(3)}
           type={chatTime === 3 ? "submit" : "option"}
@@ -63,27 +57,13 @@ const ChatTimeSelector = () => {
           onClick={() => setChatTime(10)}
           type={chatTime === 10 ? "submit" : "option"}
         />
+        <Btn
+          padding="narrow"
+          label="20초"
+          onClick={() => setChatTime(20)}
+          type={chatTime === 20 ? "submit" : "option"}
+        />
       </div>
-    </div>
-  )
-}
-
-const TestChatSender = () => {
-  const [text, setText] = useState("")
-
-  const sendChat = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    message("chat/send", { text })
-    setText("")
-  }
-
-  return (
-    <div>
-      <h1 className="text-xl font-bold mb-2">채팅 전송(beta)</h1>
-      <form onSubmit={sendChat} className="flex flex-col gap-2">
-        <StringField label="채팅 내용" value={text} setValue={setText} />
-        <Btn label="전송" type="submit" />
-      </form>
     </div>
   )
 }
@@ -96,7 +76,6 @@ export default function ChatPopup() {
         <div className="flex flex-col gap-8">
           <ChatTypeSelector />
           <ChatTimeSelector />
-          {room && <TestChatSender />}
         </div>
       </Content>
     </Full>
