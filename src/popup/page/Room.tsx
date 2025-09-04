@@ -28,17 +28,14 @@ export default function RoomPopup(props) {
           <div className="flex flex-col gap-2">
             {room?.user?.length == 0 && <p>방 접속자가 없습니다.</p>}
             {room?.user && room.user.map((peer) => Peer(peer, user))}
+            {/* {room?.user && room.user.map((peer) => Peer(peer, user))}
+            {room?.user && room.user.map((peer) => Peer(peer, user))}
+            {room?.user && room.user.map((peer) => Peer(peer, user))}
+            {room?.user && room.user.map((peer) => Peer(peer, user))} */}
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <Btn label="방 나가기" onClick={exit} type="option" />
-          <Btn
-            label="디버그"
-            onClick={() => {
-              message("video/parse")
-            }}
-            type="option"
-          />
+          <Btn label="방 나가기" onClick={exit} type="submit" />
         </div>
       </Content>
     </Full>
