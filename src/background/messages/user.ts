@@ -1,5 +1,5 @@
 import type { PlasmoMessaging } from "@plasmohq/messaging"
-import { userModule } from "~background/user"
+import { userModule } from "~background/service/user"
 
 const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
   const { msg } = req.body

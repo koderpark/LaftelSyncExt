@@ -1,8 +1,8 @@
-import { Content, Full } from "~popup/component/layout"
-import { Btn } from "~popup/component/button"
+import { Content, Full } from "~component/layout"
+import { Btn } from "~component/button"
 import packageJson from "../../../package.json"
 import { message } from "~popup/message"
-import { StorageField } from "~popup/component/form"
+import { StorageField } from "~component/form"
 import { useState } from "react"
 import { useStorage } from "@plasmohq/storage/hook"
 import icon from "data-base64:assets/icon.png"
@@ -21,12 +21,12 @@ export default function SettingPopup(props) {
   const handleReportPage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     message("page/newTab", {
-      url: "https://github.com/koderpark/ani-relayer/issues"
+      url: "https://discord.gg/dq3UBQdkqe"
     })
   }
 
   const logTest = async () => {
-    const res = await message("log/success", { text: `hello world ${count}` })
+    const res = await message("log/error", { text: `hello world ${count}` })
     setCount(count + 1)
   }
 
@@ -62,7 +62,7 @@ export default function SettingPopup(props) {
               type={isCanary ? "submit" : "option"}
             />
 
-            <Btn label="Log Test" onClick={logTest} />
+            <Btn label="Test" onClick={logTest} />
           </div>
         </div>
       </Content>

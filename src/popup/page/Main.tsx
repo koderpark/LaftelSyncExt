@@ -1,8 +1,8 @@
 import { sendToBackground } from "@plasmohq/messaging"
 import { useContext, useState } from "react"
-import { Content, Full } from "~popup/component/layout"
-import { PasswordField, StringField } from "~popup/component/form"
-import { Btn } from "~popup/component/button"
+import { Content, Full } from "~component/layout"
+import { PasswordField, StringField } from "~component/form"
+import { Btn } from "~component/button"
 import { message } from "~popup/message"
 
 export default function MainPopup(props) {
