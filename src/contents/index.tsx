@@ -1,8 +1,8 @@
 import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo"
 import cssText from "data-text:../style.css"
 import { useStorage } from "@plasmohq/storage/hook"
-import { Parser, NotParsing } from "./status"
-import { Chatting } from "~contents/chatting"
+import { Parser, NotParsing } from "./inserts/status"
+import { Chatting } from "~contents/inserts/chatting"
 
 export const config: PlasmoCSConfig = {
   matches: ["https://laftel.net/*"]
