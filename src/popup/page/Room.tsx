@@ -6,6 +6,7 @@ import { Btn } from "~component/button"
 import { LuUser, LuCrown } from "react-icons/lu"
 import { message } from "~popup/message"
 import type { RoomMetadata, UserInfo } from "~const"
+import { Chip } from "~component/chip"
 
 export default function RoomPopup(props) {
   const [room] = useStorage<RoomMetadata | null>("room")
@@ -15,27 +16,28 @@ export default function RoomPopup(props) {
     await message("room/exit")
   }
 
+  const share = async () => {
+    await message("log/error", { text: "현재 미구현 기능입니다." })
+    //todo: implement share feature
+  }
+
   return (
     <Full>
       <Content>
-        <div className="grow flex flex-col p-4 bg-gray-50 rounded-md text-gray-950 mb-4">
-          <p className="font-bold text-gray-950 text-2xl">{room?.name}</p>
-          <p className="text-sm text-gray-700">방 접속 ID : {room?.id}</p>
-
-          <hr className="my-2" />
-
-          <p className="font-bold text-gray-950 text-2xl mb-4">방 접속자</p>
+        <div className="flex flex-col mb-4">
+          <h1 className="text-xl font-bold mb-1">{room?.name}</h1>
+          <p className="text-sm font-normal">접속 번호 : {room?.id}</p>
+        </div>
+        <div className="grow flex flex-col p-3 bg-gray-50 rounded-lg text-gray-950 mb-4 border border-gray-300">
+          <p className="font-bold text-gray-950 text-xl mb-2">접속자</p>
           <div className="flex flex-col gap-2">
             {room?.user?.length == 0 && <p>방 접속자가 없습니다.</p>}
             {room?.user && room.user.map((peer) => Peer(peer, user))}
-            {/* {room?.user && room.user.map((peer) => Peer(peer, user))}
-            {room?.user && room.user.map((peer) => Peer(peer, user))}
-            {room?.user && room.user.map((peer) => Peer(peer, user))}
-            {room?.user && room.user.map((peer) => Peer(peer, user))} */}
           </div>
         </div>
-        <div className="flex flex-col gap-2">
-          <Btn label="방 나가기" onClick={exit} type="submit" />
+        <div className="grid grid-cols-2 gap-2">
+          <Btn label="방 공유하기" onClick={share} type="submit" />
+          <Btn label="방 나가기" onClick={exit} type="option" />
         </div>
       </Content>
     </Full>
@@ -52,17 +54,21 @@ function Peer(peer: RoomMetadata["user"][number], user: UserInfo | null) {
     })
   }
 
+  const name = peer.name + (peer.isHost ? " (나)" : "")
+  const icon = peer.isHost ? (
+    <LuCrown className="size-full" />
+  ) : (
+    <LuUser className="size-full" />
+  )
+
   return (
-    <div key={peer.id} className="flex flex-row gap-2">
-      <div className="w-5 h-5">
-        {peer.isHost && <LuCrown className="w-full h-full" />}
-        {!peer.isHost && <LuUser className="w-full h-full" />}
-      </div>
-      <p className="text-base text-gray-700">{peer.name}</p>
-      <p className="text-sm text-gray-700">{isMe ? "나" : ""}</p>
-      {isHost && !isMe && (
-        <button className="text-sm text-red-500" onClick={kickHandler}>
-          강퇴
+    <div
+      key={peer.id}
+      className="flex flex-row gap-2 rounded-md justify-between">
+      <Chip text={name} icon={icon} />
+      {!isMe && isHost && (
+        <button onClick={kickHandler}>
+          <Chip text="강퇴" color="red" />
         </button>
       )}
     </div>
