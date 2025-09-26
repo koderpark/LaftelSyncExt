@@ -2,10 +2,11 @@ import { Content, Full } from "~component/layout"
 import { Btn } from "~component/button"
 import packageJson from "../../../package.json"
 import { message } from "~popup/message"
-import { StorageField } from "~component/form"
-import { useState } from "react"
+import { StringField } from "~component/form"
+import { useState, useEffect } from "react"
 import { useStorage } from "@plasmohq/storage/hook"
 import icon from "data-base64:assets/icon.png"
+import { Storage } from "@plasmohq/storage"
 
 export default function SettingPopup(props) {
   const [count, setCount] = useState(0)
@@ -30,6 +31,20 @@ export default function SettingPopup(props) {
     setCount(count + 1)
   }
 
+  const [usernameState, setUsernameState] = useState("")
+  const storage = new Storage()
+
+  const setUsername = (username: string) => {
+    setUsernameState(username)
+    storage.set("username", username)
+  }
+
+  useEffect(() => {
+    storage.get("username").then((username) => {
+      setUsernameState(username)
+    })
+  }, [])
+
   return (
     <Full>
       <Content>
@@ -48,7 +63,11 @@ export default function SettingPopup(props) {
           </div>
         </Full>
         <div className="flex flex-col gap-2">
-          <StorageField storageKey="username" label="사용자 이름" />
+          <StringField
+            value={usernameState}
+            setValue={setUsername}
+            label="사용자 이름"
+          />
           <div className="grid grid-cols-2 gap-2">
             <Btn label="도움말" onClick={handleInfoPage} type="option" />
             <Btn
