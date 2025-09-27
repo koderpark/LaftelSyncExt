@@ -28,8 +28,8 @@ const valueBuild = {
   isCanary: false,
   page: "main",
   room: null,
-  user: null,
-  username: null
+  user: null
+  // username: null
 }
 
 const valueTest = {
