@@ -4,38 +4,54 @@ import { Content, Full } from "~component/layout"
 import { PasswordField, StorageField, StringField } from "~component/form"
 import { Btn } from "~component/button"
 import { message } from "~popup/message"
+import packageJson from "../../../package.json"
 
 export default function Main(props) {
-  const [username, setUsername] = useState("")
-  const [mode, setMode] = useState("create")
+  const [mode, setMode] = useState("index")
   return (
     <Full>
       <Content>
-        <div className="flex flex-col gap-8 px-16 py-8">
-          <p className="text-4xl font-bold">Ani-relayer</p>
-          <div className="flex gap-2">
-            <div className="flex-1">
-              <StorageField label="사용자 이름" storageKey="username" />
-            </div>
-            <p className="text-lg font-bold whitespace-nowrap">
-              님 반갑습니다!
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            <Btn
-              label="방 생성하기"
-              onClick={() => setMode("create")}
-              type="submit"
-            />
-            <Btn
-              label="방 참가하기"
-              onClick={() => setMode("join")}
-              type="submit"
-            />
-          </div>
-        </div>
+        {mode === "index" && <Index setMode={setMode} />}
+        {mode === "create" && <CreateForm />}
+        {mode === "join" && <JoinForm />}
       </Content>
     </Full>
+  )
+}
+
+function Index(props) {
+  const { setMode } = props
+
+  return (
+    <div className="flex flex-col gap-8 px-16 py-8">
+      <div>
+        <p className="text-4xl font-bold">Ani-relayer</p>
+        <p className="text-base font-bold text-gray-400">
+          현재 버전: v{packageJson.version}
+          {/* <a href="https://github.com/koderpark/ani-relayer"> TODO: 각 링크들을 아이콘으로 표시하기
+            <p className="text-base font-bold text-gray-400">오류제보/건의</p>
+          </a> */}
+        </p>
+      </div>
+      <div className="flex gap-2">
+        <div className="flex-1">
+          <StorageField label="사용자 이름" storageKey="username" />
+        </div>
+        <p className="text-lg font-bold whitespace-nowrap">님 반갑습니다!</p>
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        <Btn
+          label="방 생성하기"
+          onClick={() => setMode("create")}
+          type="submit"
+        />
+        <Btn
+          label="방 참가하기"
+          onClick={() => setMode("join")}
+          type="submit"
+        />
+      </div>
+    </div>
   )
 }
 
