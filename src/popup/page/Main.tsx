@@ -2,9 +2,15 @@ import { sendToBackground } from "@plasmohq/messaging"
 import { useContext, useState } from "react"
 import { Content, Full } from "~component/layout"
 import { PasswordField, StorageField, StringField } from "~component/form"
-import { Btn } from "~component/button"
+import { Btn, HeroBtn } from "~component/button"
 import { Tooltip } from "~component/tooltip"
-import { HomeIcon, ChatIcon, DocumentIcon } from "~component/icon"
+import {
+  HomeIcon,
+  ChatIcon,
+  DocumentIcon,
+  CreateIcon,
+  JoinIcon
+} from "~component/icon"
 import { message } from "~popup/message"
 import packageJson from "../../../package.json"
 
@@ -35,7 +41,7 @@ function Index(props) {
   const { setMode } = props
 
   return (
-    <div className="flex flex-col gap-8 px-16 py-8">
+    <div className="flex flex-col gap-8 px-16 py-8 grow">
       <div className="flex flex-col gap-1">
         <p className="text-4xl font-bold">Ani-relayer</p>
         <div className="flex items-center gap-2">
@@ -65,17 +71,15 @@ function Index(props) {
         </div>
         <p className="text-lg font-bold whitespace-nowrap">님 반갑습니다!</p>
       </div>
-      <div className="grid grid-cols-2 gap-2 grow">
-        <Btn
-          label="방 생성하기"
-          onClick={() => setMode("create")}
-          type="submit"
-        />
-        <Btn
-          label="방 참가하기"
-          onClick={() => setMode("join")}
-          type="submit"
-        />
+      <div className="grid grid-cols-2 gap-4 grow">
+        <HeroBtn onClick={() => setMode("create")} type="submit">
+          <CreateIcon />
+          <p>방 생성하기</p>
+        </HeroBtn>
+        <HeroBtn onClick={() => setMode("join")} type="submit">
+          <JoinIcon />
+          <p>방 참가하기</p>
+        </HeroBtn>
       </div>
     </div>
   )

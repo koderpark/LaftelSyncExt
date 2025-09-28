@@ -30,3 +30,22 @@ export function Btn({
     </button>
   )
 } 
+
+export function HeroBtn({
+  children,
+  onClick,
+  type = "submit"
+}: {
+  children: React.ReactNode
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  type?: "submit" | "option"
+}) {
+  return (
+    <button
+      className="text-white w-full rounded-lg block shadow-md bg-indigo-500 text-xl font-bold flex gap-2 justify-center items-center"
+      onClick={onClick}
+      type={type === "submit" ? "submit" : "button"}>
+      {children}
+    </button>
+  )
+}
