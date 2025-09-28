@@ -5,7 +5,7 @@ import { sendToBackground } from "@plasmohq/messaging"
 import { useStorage } from "@plasmohq/storage/hook"
 import { Full } from "~component/layout"
 
-import Main, { MainPopup } from "~popup/page/Main"
+import Main from "~popup/page/Main"
 import RoomPopup from "~popup/page/Room"
 import SettingPopup from "~popup/page/Setting"
 

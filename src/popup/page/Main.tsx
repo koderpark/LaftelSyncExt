@@ -3,7 +3,8 @@ import { useState } from "react"
 import { Content, Full } from "~component/layout"
 import { PasswordField, StorageField, StringField } from "~component/form"
 import { Btn, HeroBtn } from "~component/button"
-import { Tooltip } from "~component/tooltip"
+import { LinkIcon } from "~component/linkicon"
+
 import {
   HomeIcon,
   ChatIcon,
@@ -20,21 +21,31 @@ export default function Main(props) {
   return (
     <Full>
       <Content>
-        {mode === "index" && <Index setMode={setMode} />}
-        {mode === "create" && <CreateForm setMode={setMode} />}
-        {mode === "join" && <JoinForm setMode={setMode} />}
+        <Header mode={mode} setMode={setMode} />
+        <div className="flex flex-col gap-8 px-16 py-8 grow">
+          {mode === "index" && <Index setMode={setMode} />}
+          {mode === "create" && <CreateForm />}
+          {mode === "join" && <JoinForm />}
+        </div>
       </Content>
     </Full>
   )
 }
 
-function LinkIcon({ text, link, Icon }) {
+function Header(props) {
+  const { mode, setMode } = props
+  const headerText = mode === "create" ? "방 생성하기" : "방에 참가하기"
+  const isIndex = mode === "index"
+
   return (
-    <Tooltip content={text}>
-      <a href={link} target="_blank" rel="noopener noreferrer">
-        <Icon />
-      </a>
-    </Tooltip>
+    !isIndex && (
+      <div className="flex items-center gap-2 mb-4">
+        <button onClick={() => setMode("index")}>
+          <BackIcon />
+        </button>
+        <h1 className="text-2xl font-bold">{headerText}</h1>
+      </div>
+    )
   )
 }
 
@@ -42,7 +53,7 @@ function Index(props) {
   const { setMode } = props
 
   return (
-    <div className="flex flex-col gap-8 px-16 py-8 grow">
+    <div className="flex flex-col gap-8 grow">
       <div className="flex flex-col gap-1">
         <p className="text-4xl font-bold">Ani-relayer</p>
         <div className="flex items-center gap-2">
@@ -67,17 +78,15 @@ function Index(props) {
         </div>
       </div>
       <div className="flex gap-2">
-        <div className="flex-1">
-          <StorageField label="사용자 이름" storageKey="username" />
-        </div>
+        <StorageField label="사용자 이름" storageKey="username" />
         <p className="text-lg font-bold whitespace-nowrap">님 반갑습니다!</p>
       </div>
       <div className="grid grid-cols-2 gap-4 grow">
-        <HeroBtn onClick={() => setMode("create")} type="submit">
+        <HeroBtn onClick={() => setMode("create")}>
           <CreateIcon />
           <p>방 생성하기</p>
         </HeroBtn>
-        <HeroBtn onClick={() => setMode("join")} type="submit">
+        <HeroBtn onClick={() => setMode("join")}>
           <JoinIcon />
           <p>방 참가하기</p>
         </HeroBtn>
@@ -86,36 +95,7 @@ function Index(props) {
   )
 }
 
-export function MainPopup(props) {
-  const [mode, setMode] = useState("create")
-  return (
-    <Full>
-      <Content>
-        <Full>
-          {mode === "create" && <CreateForm setMode={setMode} />}
-          {mode === "join" && <JoinForm setMode={setMode} />}
-        </Full>
-        <div className="flex flex-col gap-8">
-          <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 ">
-            <Btn
-              label="방 생성하기"
-              onClick={() => setMode("create")}
-              type={mode === "create" ? "submit" : "option"}
-            />
-            <Btn
-              label="방에 참여하기"
-              onClick={() => setMode("join")}
-              type={mode === "join" ? "submit" : "option"}
-            />
-          </div>
-        </div>
-      </Content>
-    </Full>
-  )
-}
-
-function JoinForm(props) {
-  const { setMode } = props
+function JoinForm() {
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
 
@@ -125,14 +105,8 @@ function JoinForm(props) {
   }
 
   return (
-    <div className="flex flex-col">
-      <div className="flex items-center gap-2 mb-4">
-        <button onClick={() => setMode("index")}>
-          <BackIcon />
-        </button>
-        <h1 className="text-2xl font-bold">방에 참가하기</h1>
-      </div>
-      <form onSubmit={submitJoin} className="flex gap-2 px-16 py-8">
+    <div className="flex flex-col grow">
+      <form onSubmit={submitJoin} className="flex gap-2">
         <div className="flex flex-col gap-2 grow">
           <StringField label="방 접속 번호" value={id} setValue={setId} />
           <PasswordField
@@ -149,8 +123,7 @@ function JoinForm(props) {
   )
 }
 
-function CreateForm(props) {
-  const { setMode } = props
+function CreateForm() {
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
 
@@ -160,14 +133,8 @@ function CreateForm(props) {
   }
 
   return (
-    <div className="flex flex-col">
-      <div className="flex items-center gap-2 mb-4">
-        <button onClick={() => setMode("index")}>
-          <BackIcon />
-        </button>
-        <h1 className="text-2xl font-bold">방 생성하기</h1>
-      </div>
-      <form onSubmit={submitJoin} className="flex gap-2 px-16 py-8">
+    <div className="flex flex-col grow">
+      <form onSubmit={submitJoin} className="flex gap-2">
         <div className="flex flex-col gap-2 grow">
           <StringField label="방 이름" value={name} setValue={setName} />
           <PasswordField

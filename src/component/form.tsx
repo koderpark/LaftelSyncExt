@@ -64,7 +64,7 @@ export function StorageField({
 
   return (
     <input
-      className="block w-full bg-gray-800 text-white p-2 rounded-md shadow-md"
+      className="bg-gray-800 text-white p-2 rounded-md shadow-md field-sizing-content"
       type="text"
       value={state}
       placeholder={label}
