@@ -1,5 +1,5 @@
 import { sendToBackground } from "@plasmohq/messaging"
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { Content, Full } from "~component/layout"
 import { PasswordField, StorageField, StringField } from "~component/form"
 import { Btn, HeroBtn } from "~component/button"
@@ -9,7 +9,8 @@ import {
   ChatIcon,
   DocumentIcon,
   CreateIcon,
-  JoinIcon
+  JoinIcon,
+  BackIcon
 } from "~component/icon"
 import { message } from "~popup/message"
 import packageJson from "../../../package.json"
@@ -20,8 +21,8 @@ export default function Main(props) {
     <Full>
       <Content>
         {mode === "index" && <Index setMode={setMode} />}
-        {mode === "create" && <CreateForm />}
-        {mode === "join" && <JoinForm />}
+        {mode === "create" && <CreateForm setMode={setMode} />}
+        {mode === "join" && <JoinForm setMode={setMode} />}
       </Content>
     </Full>
   )
@@ -91,8 +92,8 @@ export function MainPopup(props) {
     <Full>
       <Content>
         <Full>
-          {mode === "create" && <CreateForm />}
-          {mode === "join" && <JoinForm />}
+          {mode === "create" && <CreateForm setMode={setMode} />}
+          {mode === "join" && <JoinForm setMode={setMode} />}
         </Full>
         <div className="flex flex-col gap-8">
           <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 ">
@@ -113,7 +114,8 @@ export function MainPopup(props) {
   )
 }
 
-function JoinForm() {
+function JoinForm(props) {
+  const { setMode } = props
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
 
@@ -124,8 +126,13 @@ function JoinForm() {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-xl font-bold mb-2">방에 참가하기</h1>
-      <form onSubmit={submitJoin} className="flex gap-2">
+      <div className="flex items-center gap-2 mb-4">
+        <button onClick={() => setMode("index")}>
+          <BackIcon />
+        </button>
+        <h1 className="text-2xl font-bold">방에 참가하기</h1>
+      </div>
+      <form onSubmit={submitJoin} className="flex gap-2 px-16 py-8">
         <div className="flex flex-col gap-2 grow">
           <StringField label="방 접속 번호" value={id} setValue={setId} />
           <PasswordField
@@ -142,7 +149,8 @@ function JoinForm() {
   )
 }
 
-function CreateForm() {
+function CreateForm(props) {
+  const { setMode } = props
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
 
@@ -153,8 +161,13 @@ function CreateForm() {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-xl font-bold mb-2">방 생성하기</h1>
-      <form onSubmit={submitJoin} className="flex gap-2">
+      <div className="flex items-center gap-2 mb-4">
+        <button onClick={() => setMode("index")}>
+          <BackIcon />
+        </button>
+        <h1 className="text-2xl font-bold">방 생성하기</h1>
+      </div>
+      <form onSubmit={submitJoin} className="flex gap-2 px-16 py-8">
         <div className="flex flex-col gap-2 grow">
           <StringField label="방 이름" value={name} setValue={setName} />
           <PasswordField
