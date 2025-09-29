@@ -13,6 +13,10 @@ export default function AdminPopup(props) {
   const [chatAble, setChatAble] = useState(false)
   const [chatSlow, setChatSlow] = useState("none")
 
+  const share = async () => {
+    await message("log/error", { text: "현재 미구현 기능입니다." })
+  }
+
   const handleInfoPage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     message("page/newTab", {
@@ -41,7 +45,7 @@ export default function AdminPopup(props) {
         </div>
         <div className="flex flex-col gap-2">
           <div className="grid grid-cols-2 gap-2">
-            <Btn label="도움말" onClick={handleInfoPage} type="option" />
+            <Btn label="방 공유하기" onClick={share} type="submit" />
             <Btn
               label="오류제보/건의"
               onClick={handleReportPage}
