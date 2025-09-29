@@ -30,19 +30,13 @@ export default function Navbar() {
           type={page == "main" ? "active" : "default"}
           onClick={() => setPage("main")}>
           <LuDoorOpen className="w-5 h-5" />
-          <p className="text-sm">방 설정</p>
+          <p className="text-sm">방 멤버</p>
         </PillBtn>
         <PillBtn
           type={page == "chat" ? "active" : "default"}
           onClick={() => setPage("chat")}>
           <LuMessageSquare className="w-5 h-5" />
-          <p className="text-sm">채팅</p>
-        </PillBtn>
-        <PillBtn
-          type={page == "setting" ? "active" : "default"}
-          onClick={() => setPage("setting")}>
-          <LuSettings className="w-5 h-5" />
-          <p className="text-sm">설정</p>
+          <p className="text-sm">채팅 설정</p>
         </PillBtn>
         {isHost && (
           <PillBtn

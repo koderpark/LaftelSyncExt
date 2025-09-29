@@ -7,7 +7,6 @@ import { Full } from "~component/layout"
 
 import Main from "~popup/page/Main"
 import RoomPopup from "~popup/page/Room"
-import SettingPopup from "~popup/page/Setting"
 
 import Header from "~component/header"
 import Navbar from "~component/nav"
@@ -29,7 +28,6 @@ export default function Index() {
           <div className="grow flex">
             <Navbar />
             {page == "main" && <RoomPopup />}
-            {page == "setting" && <SettingPopup />}
             {page == "chat" && <ChatPopup />}
             {page == "admin" && <AdminPopup />}
           </div>
