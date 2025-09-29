@@ -14,6 +14,8 @@ import Navbar from "~component/nav"
 import ChatPopup from "./page/Chat"
 import { LogRenderer } from "./log"
 
+import AdminPopup from "./page/Admin"
+
 export default function Index() {
   const [page] = useStorage("page", "main")
   const [room] = useStorage("room", null)
@@ -29,6 +31,7 @@ export default function Index() {
             {page == "main" && <RoomPopup />}
             {page == "setting" && <SettingPopup />}
             {page == "chat" && <ChatPopup />}
+            {page == "admin" && <AdminPopup />}
           </div>
         )}
       </Full>

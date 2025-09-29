@@ -19,7 +19,7 @@ export function PillBtn(props) {
 
   return (
     <div
-      className={`flex items-center justify-center rounded-full ${typeClass} py-2 pe-4 ps-3 font-bold cursor-pointer shadow-md flex-row gap-1 text-white transition-colors`}
+      className={`flex w-full items-center justify-start rounded-full ${typeClass} py-2 pe-4 ps-3 font-bold cursor-pointer shadow-md flex-row gap-1 text-white transition-colors`}
       onClick={onClick}>
       {children}
     </div>
