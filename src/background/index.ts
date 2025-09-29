@@ -36,7 +36,7 @@ const valueTest = {
   chatTime: 5,
   chatType: "normal",
   collapsed: false,
-  isCanary: true,
+  isCanary: false,
   page: "main",
   room: null,
   user: null,

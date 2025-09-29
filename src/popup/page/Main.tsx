@@ -18,10 +18,20 @@ import packageJson from "../../../package.json"
 
 export default function Main(props) {
   const [mode, setMode] = useState("index")
+  const headerText = mode === "create" ? "방 생성하기" : "방에 참가하기"
+  const isIndex = mode === "index"
+
   return (
     <Full>
       <Content>
-        <Header mode={mode} setMode={setMode} />
+        {!isIndex && (
+          <div className="flex items-center gap-2 mb-4">
+            <button onClick={() => setMode("index")}>
+              <BackIcon />
+            </button>
+            <h1 className="text-2xl font-bold">{headerText}</h1>
+          </div>
+        )}
         <div className="flex flex-col gap-8 px-16 py-8 grow">
           {mode === "index" && <Index setMode={setMode} />}
           {mode === "create" && <CreateForm />}
@@ -29,23 +39,6 @@ export default function Main(props) {
         </div>
       </Content>
     </Full>
-  )
-}
-
-function Header(props) {
-  const { mode, setMode } = props
-  const headerText = mode === "create" ? "방 생성하기" : "방에 참가하기"
-  const isIndex = mode === "index"
-
-  return (
-    !isIndex && (
-      <div className="flex items-center gap-2 mb-4">
-        <button onClick={() => setMode("index")}>
-          <BackIcon />
-        </button>
-        <h1 className="text-2xl font-bold">{headerText}</h1>
-      </div>
-    )
   )
 }
 
@@ -115,7 +108,7 @@ function JoinForm() {
             setValue={setPassword}
           />
         </div>
-        <div className="flex">
+        <div className="flex grow-1/2">
           <Btn label="참가" type="submit" />
         </div>
       </form>

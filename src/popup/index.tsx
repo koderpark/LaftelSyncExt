@@ -24,9 +24,14 @@ export default function Index() {
         <LogRenderer />
         {/* <Header /> */}
         {page == "main" && room === null && <Main />}
-        {page == "main" && room !== null && <RoomPopup />}
-        {page == "setting" && <SettingPopup />}
-        {page == "chat" && <ChatPopup />}
+        {room !== null && (
+          <div className="grow flex">
+            <Navbar />
+            {page == "main" && <RoomPopup />}
+            {page == "setting" && <SettingPopup />}
+            {page == "chat" && <ChatPopup />}
+          </div>
+        )}
         {/* <Navbar /> */}
       </Full>
     </div>

@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <div>
       {isLogin && (
-        <div className="w-full h-16 flex items-center justify-between bg-gray-800 text-white px-4 shadow-md">
+        <div className="w-40 h-full flex flex-col items-center justify-start bg-gray-800 text-white p-4 shadow-md">
           <PillBtn isActive={page == "main"} onClick={() => setPage("main")}>
             <LuDoorOpen className="w-5 h-5" />
             <p className="text-sm">{room ? "방 설정" : "방 접속"}</p>
