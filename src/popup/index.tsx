@@ -22,8 +22,7 @@ export default function Index() {
     <div className="w-[540px] h-[360px] p-0">
       <Full>
         <LogRenderer />
-        {/* <Header /> */}
-        {page == "main" && room === null && <Main />}
+        {room === null && <Main />}
         {room !== null && (
           <div className="grow flex">
             <Navbar />
@@ -32,7 +31,6 @@ export default function Index() {
             {page == "chat" && <ChatPopup />}
           </div>
         )}
-        {/* <Navbar /> */}
       </Full>
     </div>
   )

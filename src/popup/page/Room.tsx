@@ -12,10 +12,6 @@ export default function RoomPopup(props) {
   const [room] = useStorage<RoomMetadata | null>("room")
   const [user] = useStorage<UserInfo | null>("user")
 
-  const exit = async () => {
-    await message("room/exit")
-  }
-
   const share = async () => {
     await message("log/error", { text: "현재 미구현 기능입니다." })
     //todo: implement share feature
@@ -37,7 +33,6 @@ export default function RoomPopup(props) {
         </div>
         <div className="grid grid-cols-2 gap-2">
           <Btn label="방 공유하기" onClick={share} type="submit" />
-          <Btn label="방 나가기" onClick={exit} type="option" />
         </div>
       </Content>
     </Full>
