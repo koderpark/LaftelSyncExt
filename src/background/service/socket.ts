@@ -6,7 +6,8 @@ import {
   videoUpdateHandler,
   chatUpdateHandler,
   connectErrorHandler,
-  userHandler
+  userHandler,
+  errorHandler
 } from "./socket-handler"
 import { Storage } from "@plasmohq/storage"
 import { logModule } from "./log"
@@ -74,6 +75,7 @@ export const socketModule = (() => {
     instance.on("chat", chatUpdateHandler)
     instance.on("connect_error", connectErrorHandler)
     instance.on("user", userHandler)
+    instance.on("error", errorHandler)
   }
 
   const disconnect = async () => {
