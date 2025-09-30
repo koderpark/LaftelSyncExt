@@ -11,10 +11,9 @@ export default function AdminPopup(props) {
   const [isCanary, setIsCanary] = useStorage("isCanary")
 
   const [chatAble, setChatAble] = useState(false)
-  const [chatSlow, setChatSlow] = useState("none")
 
   const share = async () => {
-    await message("log/error", { text: "현재 미구현 기능입니다." })
+    await message("room/link", null)
   }
 
   const handleInfoPage = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -41,7 +40,6 @@ export default function AdminPopup(props) {
       <Content>
         <div className="flex flex-col gap-8 mb-8">
           <ChatAbility chatAble={chatAble} setChatAble={setChatAble} />
-          <ChatSlow chatSlow={chatSlow} setChatSlow={setChatSlow} />
         </div>
         <div className="flex flex-col gap-2">
           <div className="grid grid-cols-2 gap-2">
@@ -84,38 +82,4 @@ const ChatAbility = (props) => {
       </div>
     </div>
   )
-}
-
-const ChatSlow = (props) => {
-  const { chatSlow, setChatSlow } = props
-
-  return (
-    <div>
-      <div>
-        <h1 className="text-xl font-bold mb-2">슬로우 모드</h1>
-      </div>
-      <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 ">
-        <Btn
-          label="슬로우 없음"
-          onClick={() => setChatSlow("none")}
-          type={chatSlow === "none" ? "submit" : "option"}
-        />
-        <Btn
-          label="슬로우 5초"
-          onClick={() => setChatSlow("5")}
-          type={chatSlow === "5" ? "submit" : "option"}
-        />
-        <Btn
-          label="슬로우 15초"
-          onClick={() => setChatSlow("15")}
-          type={chatSlow === "15" ? "submit" : "option"}
-        />
-        <Btn
-          label="슬로우 1분"
-          onClick={() => setChatSlow("60")}
-          type={chatSlow === "60" ? "submit" : "option"}
-        />
-      </div>
-    </div>
-  )
-}
+} 

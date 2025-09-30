@@ -36,11 +36,16 @@ export const roomModule = (() => {
     await socketModule.send("room/kick", { userId: id })
   }
 
+  const link = async () => {
+    await socketModule.send("room/link", null)
+  }
+
   return {
     create,
     join,
     exit,
     update,
-    kick
+    kick,
+    link
   }
 })()
