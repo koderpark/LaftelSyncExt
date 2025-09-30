@@ -4,6 +4,7 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
   const { msg } = req.body
   if (msg == "create") createHandler(req, res)
   if (msg == "join") joinHandler(req, res)
+  if (msg == "join_link") joinLinkHandler(req, res)
   if (msg == "exit") exitHandler(req, res)
   if (msg == "kick") kickHandler(req, res)
   if (msg == "link") linkHandler(req, res)
@@ -16,6 +17,11 @@ const createHandler: PlasmoMessaging.MessageHandler = async (req, res) => {
 
 const joinHandler: PlasmoMessaging.MessageHandler = async (req, res) => {
   const message = await roomModule.join(req.body.roomId, req.body.password)
+  res.send(message)
+}
+
+const joinLinkHandler: PlasmoMessaging.MessageHandler = async (req, res) => {
+  const message = await roomModule.joinLink(req.body.uuid)
   res.send(message)
 }
 
