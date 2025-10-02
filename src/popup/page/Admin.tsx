@@ -25,7 +25,7 @@ export default function AdminPopup(props) {
   }
 
   const logTest = async () => {
-    const res = await message("log/error", { text: `admin test ${count}` })
+    const res = await message("log/warning", { text: `admin test ${count}` })
     setCount(count + 1)
   }
 

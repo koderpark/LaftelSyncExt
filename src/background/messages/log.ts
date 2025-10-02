@@ -6,6 +6,7 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
   const { msg } = req.body
   if (msg == "success") await testHandler(req, res)
   if (msg == "error") await errorHandler(req, res)
+  if (msg == "warning") await warningHandler(req, res)
   else res.send({ status: "ignored" }) // todo: return type definition
 }
 
@@ -19,6 +20,12 @@ const errorHandler: PlasmoMessaging.MessageHandler = async (req, res) => {
   const { text } = req.body
   await logModule.log("error", text)
   socketModule.send("test", { text: "hello world" })
+  res.send({ status: "ok" })
+}
+
+const warningHandler: PlasmoMessaging.MessageHandler = async (req, res) => {
+  const { text } = req.body
+  await logModule.log("warning", text)
   res.send({ status: "ok" })
 }
 

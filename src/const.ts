@@ -33,7 +33,7 @@ export interface UserInfo {
 }
 
 export interface Log {
-  type: "success" | "error"
+  type: "success" | "error" | "warning"
   message: string
   time: Date
 }
