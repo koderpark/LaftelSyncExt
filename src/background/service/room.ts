@@ -45,7 +45,7 @@ export const roomModule = (() => {
   }
 
   const link = async () => {
-    await socketModule.send("room/link", null)
+    return await socketModule.sendRes("room/link", null)
   }
 
   return {

@@ -13,7 +13,15 @@ export default function AdminPopup(props) {
   const [chatAble, setChatAble] = useState(false)
 
   const share = async () => {
-    await message("room/link", null)
+    const ret = await message("room/link", null)
+    try {
+      await window.navigator.clipboard.writeText(ret)
+      message("log/success", { text: `클립보드 복사 성공` })
+    } catch (error) {
+      message("log/error", { text: `클립보드 복사 실패: ${error}` })
+      message("log/error", { text: `직접 링크를 복사해주세요` })
+      message("log/error", { text: ret })
+    }
   }
 
   const logTest = async () => {

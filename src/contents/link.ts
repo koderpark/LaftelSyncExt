@@ -15,7 +15,6 @@ const extractRoomUuidFromLocation = (loc: Location): string | null => {
 const handleLocationForRoomUuid = () => {
   const uuid = extractRoomUuidFromLocation(window.location)
   if (!uuid) return
-  alert(uuid)
   sendToBackground({
     name: "room",
     body: { msg: "join_link", uuid }

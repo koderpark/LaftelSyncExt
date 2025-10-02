@@ -45,8 +45,3 @@ export const userHandler = async (data: UserInfo) => {
 export const errorHandler = async (reason: string) => {
   logModule.log("error", reason)
 }
-
-export const roomLinkHandler = async (data: string) => {
-  logModule.devLog("roomLinkHandler")
-  logModule.devLog(data)
-}
