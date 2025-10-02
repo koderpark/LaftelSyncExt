@@ -5,29 +5,33 @@ import { sendToBackground } from "@plasmohq/messaging"
 import { useStorage } from "@plasmohq/storage/hook"
 import { Full } from "~component/layout"
 
-import MainPopup from "~popup/page/Main"
+import Main from "~popup/page/Main"
 import RoomPopup from "~popup/page/Room"
-import SettingPopup from "~popup/page/Setting"
 
 import Header from "~component/header"
 import Navbar from "~component/nav"
 import ChatPopup from "./page/Chat"
 import { LogRenderer } from "./log"
 
+import AdminPopup from "./page/Admin"
+
 export default function Index() {
   const [page] = useStorage("page", "main")
   const [room] = useStorage("room", null)
 
   return (
-    <div className="w-[320px] h-[480px] p-0">
+    <div className="w-[540px] h-[360px] p-0">
       <Full>
         <LogRenderer />
-        <Header />
-        {page == "main" && room === null && <MainPopup />}
-        {page == "main" && room !== null && <RoomPopup />}
-        {page == "setting" && <SettingPopup />}
-        {page == "chat" && <ChatPopup />}
-        <Navbar />
+        {room === null && <Main />}
+        {room !== null && (
+          <div className="grow flex">
+            <Navbar />
+            {page == "main" && <RoomPopup />}
+            {page == "chat" && <ChatPopup />}
+            {page == "admin" && <AdminPopup />}
+          </div>
+        )}
       </Full>
     </div>
   )

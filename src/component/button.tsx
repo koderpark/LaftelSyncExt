@@ -30,3 +30,20 @@ export function Btn({
     </button>
   )
 } 
+
+export function HeroBtn({
+  children,
+  onClick
+}: {
+  children: React.ReactNode
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+}) {
+  return (
+    <button
+      className="text-white w-full rounded-[1.5rem] block shadow-md bg-indigo-500 hover:bg-indigo-600 text-xl font-bold flex gap-2 justify-center items-center"
+      onClick={onClick}
+      type="button">
+      {children}
+    </button>
+  )
+}

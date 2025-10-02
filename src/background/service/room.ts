@@ -22,6 +22,14 @@ export const roomModule = (() => {
     await socketModule.connectPeer(roomId, password) // Todo: connect failed fallback
   }
 
+  const joinLink = async (uuid: string) => {
+    if (uuid === "") {
+      logModule.log("error", "잘못된 링크입니다.")
+      return
+    }
+    await socketModule.connectLink(uuid)
+  }
+
   const exit = async () => {
     await socketModule.disconnect()
     await storage.set("room", null)
@@ -36,11 +44,17 @@ export const roomModule = (() => {
     await socketModule.send("room/kick", { userId: id })
   }
 
+  const link = async () => {
+    return await socketModule.sendRes("room/link", null)
+  }
+
   return {
     create,
     join,
+    joinLink,
     exit,
     update,
-    kick
+    kick,
+    link
   }
 })()

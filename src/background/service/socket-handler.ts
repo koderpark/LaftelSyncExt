@@ -41,3 +41,7 @@ export const userHandler = async (data: UserInfo) => {
   logModule.devLog("userHandler")
   await userModule.set(data)
 }
+
+export const errorHandler = async (reason: string) => {
+  logModule.log("error", reason)
+}

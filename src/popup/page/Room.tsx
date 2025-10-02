@@ -12,15 +12,6 @@ export default function RoomPopup(props) {
   const [room] = useStorage<RoomMetadata | null>("room")
   const [user] = useStorage<UserInfo | null>("user")
 
-  const exit = async () => {
-    await message("room/exit")
-  }
-
-  const share = async () => {
-    await message("log/error", { text: "현재 미구현 기능입니다." })
-    //todo: implement share feature
-  }
-
   return (
     <Full>
       <Content>
@@ -28,16 +19,12 @@ export default function RoomPopup(props) {
           <h1 className="text-xl font-bold mb-1">{room?.name}</h1>
           <p className="text-sm font-normal">접속 번호 : {room?.id}</p>
         </div>
-        <div className="grow flex flex-col p-3 bg-gray-50 rounded-lg text-gray-950 mb-4 border border-gray-300">
+        <div className="grow flex flex-col p-3 bg-gray-50 rounded-lg text-gray-950 border border-gray-300">
           <p className="font-bold text-gray-950 text-xl mb-2">접속자</p>
           <div className="flex flex-col gap-2">
             {room?.user?.length == 0 && <p>방 접속자가 없습니다.</p>}
             {room?.user && room.user.map((peer) => Peer(peer, user))}
           </div>
-        </div>
-        <div className="grid grid-cols-2 gap-2">
-          <Btn label="방 공유하기" onClick={share} type="submit" />
-          <Btn label="방 나가기" onClick={exit} type="option" />
         </div>
       </Content>
     </Full>

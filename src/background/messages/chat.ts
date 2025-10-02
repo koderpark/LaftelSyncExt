@@ -8,7 +8,7 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
 
 const sendHandler: PlasmoMessaging.MessageHandler = async (req, res) => {
   const { text } = req.body
-  await socketModule.send("chat", text)
+  if (text) await socketModule.send("chat", text)
   res.send(true)
 }
 

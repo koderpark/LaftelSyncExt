@@ -1,4 +1,5 @@
-import { useStorage } from "@plasmohq/storage/hook"
+import { Storage } from "@plasmohq/storage"
+import { useEffect, useState } from "react"
 
 export function StringField({
   label,
@@ -47,15 +48,27 @@ export function StorageField({
   storageKey: string
   label: string
 }) {
-  const [storage, setStorage] = useStorage(storageKey)
+  const [state, setState] = useState("")
+  const storage = new Storage()
+
+  const UpdateState = (value: string) => {
+    setState(value)
+    storage.set(storageKey, value)
+  }
+
+  useEffect(() => {
+    storage.get(storageKey).then((value) => {
+      setState(value)
+    })
+  }, [])
 
   return (
     <input
-      className="block w-full bg-gray-800 text-white p-2 rounded-md shadow-md"
+      className="bg-gray-800 text-white p-2 rounded-md shadow-md field-sizing-content"
       type="text"
-      value={storage || ""}
+      value={state}
       placeholder={label}
-      onChange={(e) => setStorage(e.target.value)}
+      onChange={(e) => UpdateState(e.target.value)}
     />
   )
 }

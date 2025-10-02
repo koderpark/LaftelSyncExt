@@ -6,7 +6,8 @@ function LogElement(props: Log) {
   const { type, message } = props
   const match = {
     success: "bg-green-400",
-    error: "bg-red-400"
+    error: "bg-red-400",
+    warning: "bg-yellow-400"
   }
 
   return (

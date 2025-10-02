@@ -6,7 +6,8 @@ import {
   videoUpdateHandler,
   chatUpdateHandler,
   connectErrorHandler,
-  userHandler
+  userHandler,
+  errorHandler
 } from "./socket-handler"
 import { Storage } from "@plasmohq/storage"
 import { logModule } from "./log"
@@ -65,6 +66,29 @@ export const socketModule = (() => {
     handler()
   }
 
+  const connectLink = async (uuid: string) => {
+    const username = await storage.get("username")
+    if (!username) {
+      await logModule.log(
+        "error",
+        "Username is not defined. Please set your username first."
+      )
+      throw new Error("Username is not defined")
+    }
+
+    if (instance) await disconnect()
+    instance = io(`${await getUrl()}`, {
+      transports: ["websocket"],
+      reconnection: false,
+      auth: {
+        type: "link",
+        username,
+        uuid
+      }
+    })
+    handler()
+  }
+
   const handler = async () => {
     if (!instance) return
     instance.on("connect", () => connectHandler(instance.id))
@@ -74,6 +98,7 @@ export const socketModule = (() => {
     instance.on("chat", chatUpdateHandler)
     instance.on("connect_error", connectErrorHandler)
     instance.on("user", userHandler)
+    instance.on("error", errorHandler)
   }
 
   const disconnect = async () => {
@@ -103,6 +128,7 @@ export const socketModule = (() => {
     disconnect,
     get,
     send,
-    sendRes
+    sendRes,
+    connectLink
   }
 })()
