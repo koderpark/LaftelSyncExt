@@ -1,9 +1,10 @@
 import { sendToBackground } from "@plasmohq/messaging"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Content, Full } from "~component/layout"
 import { PasswordField, StorageField, StringField } from "~component/form"
 import { Btn, HeroBtn } from "~component/button"
 import { LinkIcon } from "~component/linkicon"
+import { useStorage } from "@plasmohq/storage/hook"
 
 import {
   HomeIcon,
@@ -44,6 +45,7 @@ export default function Main(props) {
 
 function Index(props) {
   const { setMode } = props
+  const [isCanary, setIsCanary] = useStorage("isCanary", false)
 
   return (
     <div className="flex flex-col gap-8 grow">
@@ -68,6 +70,22 @@ function Index(props) {
             link="https://ani.koder.page/guide"
             Icon={DocumentIcon}
           />
+        </div>
+        <div>
+          <div className="flex items-center gap-2 mt-1">
+            <input
+              type="checkbox"
+              id="canaryToggle"
+              checked={isCanary}
+              onChange={(e) => setIsCanary(e.target.checked)}
+              className="w-4 h-4 text-indigo-500 rounded border-gray-300 focus:ring-0 accent-indigo-500"
+            />
+            <label
+              htmlFor="canaryToggle"
+              className="text-sm font-bold text-gray-400">
+              개발자 모드 활성화
+            </label>
+          </div>
         </div>
       </div>
       <div className="flex gap-2">

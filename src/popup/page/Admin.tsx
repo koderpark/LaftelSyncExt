@@ -16,20 +16,6 @@ export default function AdminPopup(props) {
     await message("room/link", null)
   }
 
-  const handleInfoPage = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    message("page/newTab", {
-      url: "https://ani.koder.page/guide"
-    })
-  }
-
-  const handleReportPage = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    message("page/newTab", {
-      url: "https://discord.gg/dq3UBQdkqe"
-    })
-  }
-
   const logTest = async () => {
     const res = await message("log/error", { text: `admin test ${count}` })
     setCount(count + 1)
@@ -38,22 +24,12 @@ export default function AdminPopup(props) {
   return (
     <Full>
       <Content>
-        <div className="flex flex-col gap-8 mb-8">
+        {/* <div className="flex flex-col gap-8 mb-8">
           <ChatAbility chatAble={chatAble} setChatAble={setChatAble} />
-        </div>
+        </div> */}
         <div className="flex flex-col gap-2">
           <div className="grid grid-cols-2 gap-2">
             <Btn label="방 공유하기" onClick={share} type="submit" />
-            <Btn
-              label="오류제보/건의"
-              onClick={handleReportPage}
-              type="option"
-            />
-            <Btn
-              label={isCanary ? "개발자 모드 끄기" : "개발자 모드"}
-              onClick={() => setIsCanary(!isCanary)}
-              type={isCanary ? "submit" : "option"}
-            />
             <Btn label="Admin Test" onClick={logTest} />
           </div>
         </div>
