@@ -5,20 +5,20 @@ export type Color =
   | "green"
   | "sky"
   | "blue"
-  | "violet"
+  | "indigo"
   | "slate"
   | "gray"
 
 export const wrapperMap: Record<Color, string> = {
-  primary: "bg-gray-50 border-gray-300",
-  red: "bg-red-200 border-red-300",
-  yellow: "bg-yellow-200 border-yellow-300",
-  green: "bg-green-200 border-green-300",
-  sky: "bg-sky-200 border-sky-300",
-  blue: "bg-blue-200 border-blue-300",
-  violet: "bg-violet-200 border-violet-300",
-  slate: "bg-slate-200 border-slate-300",
-  gray: "bg-gray-200 border-gray-300"
+  primary: "bg-gray-500 border-gray-600",
+  red: "bg-red-500 border-red-600",
+  yellow: "bg-yellow-500 border-yellow-600",
+  green: "bg-green-500 border-green-600",
+  sky: "bg-sky-500 border-sky-600",
+  blue: "bg-blue-500 border-blue-600",
+  indigo: "bg-indigo-500 border-indigo-600",
+  slate: "bg-slate-500 border-slate-600",
+  gray: "bg-gray-500 border-gray-600"
 }
 
 export type ChipProps = {
@@ -30,7 +30,7 @@ export type ChipProps = {
 export const Chip = ({ text, icon, color = "primary" }: ChipProps) => {
   return (
     <div
-      className={`${wrapperMap[color]} border px-1.5 rounded-md flex items-center gap-1 w-fit text-black text-black`}>
+      className={`${wrapperMap[color]} text-white border px-1.5 rounded-md flex items-center gap-1 w-fit text-black text-black`}>
       {icon && <span className="size-4">{icon}</span>}
       <p className="text-sm">{text}</p>
     </div>

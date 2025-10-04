@@ -16,6 +16,7 @@ import {
 } from "~component/icon"
 import { message } from "~popup/message"
 import packageJson from "../../../package.json"
+import { Chip } from "~component/chip"
 
 export default function Main(props) {
   const [mode, setMode] = useState("index")
@@ -70,22 +71,7 @@ function Index(props) {
             link="https://ani.koder.page/guide"
             Icon={DocumentIcon}
           />
-        </div>
-        <div>
-          <div className="flex items-center gap-2 mt-1">
-            <input
-              type="checkbox"
-              id="canaryToggle"
-              checked={isCanary}
-              onChange={(e) => setIsCanary(e.target.checked)}
-              className="w-4 h-4 text-indigo-500 rounded border-gray-300 focus:ring-0 accent-indigo-500"
-            />
-            <label
-              htmlFor="canaryToggle"
-              className="text-sm font-bold text-gray-400">
-              개발자 모드 활성화
-            </label>
-          </div>
+          {isCanary && <Chip text="Beta Server" color="indigo" />}
         </div>
       </div>
       <div className="flex gap-2">
