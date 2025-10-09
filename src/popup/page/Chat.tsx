@@ -9,25 +9,33 @@ import { StringField } from "~component/form"
 
 const ChatTypeSelector = () => {
   const [chatType, setChatType] = useStorage("chatType", "normal")
+
+  const sidebarOpen = async () => {
+    setChatType("none")
+    await chrome.sidePanel.open({
+      windowId: (await chrome.windows.getCurrent()).id
+    })
+  }
+
   return (
     <div>
       <h1 className="text-xl font-bold mb-2">표시 방식</h1>
-      <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 ">
-        <Btn
-          label="사이드바에 표시"
-          onClick={() => setChatType("side")}
-          type={chatType === "side" ? "submit" : "option"}
-        />
-        <Btn
-          label="화면 안에 표시"
-          onClick={() => setChatType("normal")}
-          type={chatType === "normal" ? "submit" : "option"}
-        />
-        <Btn
-          label="표시하지 않기"
-          onClick={() => setChatType("none")}
-          type={chatType === "none" ? "submit" : "option"}
-        />
+      <div className="grid grid-cols-3 gap-2">
+        <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 col-span-1">
+          <Btn label="사이드바 표시" onClick={sidebarOpen} type="option" />
+        </div>
+        <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 col-span-2">
+          <Btn
+            label="화면 안에 표시"
+            onClick={() => setChatType("normal")}
+            type={chatType === "normal" ? "submit" : "option"}
+          />
+          <Btn
+            label="표시하지 않기"
+            onClick={() => setChatType("none")}
+            type={chatType === "none" ? "submit" : "option"}
+          />
+        </div>
       </div>
     </div>
   )
@@ -68,26 +76,6 @@ const ChatTimeSelector = () => {
   )
 }
 
-const OpenSidePanel = () => {
-  const openPanel = async () => {
-    chrome.sidePanel.open({
-      windowId: (await chrome.windows.getCurrent()).id
-    })
-  }
-
-  return (
-    <div>
-      <h1 className="text-xl font-bold mb-2">
-        채팅 패널 열기
-        <p className="text-sm text-gray-400">지나간 채팅 확인, 채팅창 고정</p>
-      </h1>
-      <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 w-32">
-        <Btn label="열기" onClick={openPanel} type="submit" />
-      </div>
-    </div>
-  )
-}
-
 export default function ChatPopup() {
   const [room] = useStorage("room")
   return (
@@ -96,7 +84,6 @@ export default function ChatPopup() {
         <div className="flex flex-col gap-8">
           <ChatTypeSelector />
           <ChatTimeSelector />
-          <OpenSidePanel />
         </div>
       </Content>
     </Full>

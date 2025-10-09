@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from "react"
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
 import type { Chat } from "~const"
-import "../style.css"
 import { StringField } from "~component/form"
 import { Btn } from "~component/button"
 import { message } from "~popup/message"
+import "./scroll.css"
+import "../style.css"
 
 const ChatWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -56,7 +57,7 @@ function IndexSidePanel() {
       </div>
       <form
         onSubmit={sendChat}
-        className="flex gap-2 bg-gray-900 rounded-[12px] p-1 w-full h-16">
+        className="flex gap-2 bg-gray-900 rounded-[12px] p-1 w-full h-12">
         <StringField label="채팅 내용" value={text} setValue={setText} />
         <Btn label="전송" type="submit" padding="small" />
       </form>
