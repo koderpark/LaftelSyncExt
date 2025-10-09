@@ -1,7 +1,17 @@
 import { useState } from "react"
+import { Storage } from "@plasmohq/storage"
+import { useStorage } from "@plasmohq/storage/hook"
+import type { Chat } from "~const"
 
 function IndexSidePanel() {
   const [data, setData] = useState("")
+
+  const [chat] = useStorage({
+    key: "chat",
+    instance: new Storage({
+      area: "local"
+    })
+  })
 
   return (
     <div
@@ -22,6 +32,7 @@ function IndexSidePanel() {
       <a href="https://docs.plasmo.com" target="_blank">
         View Docs
       </a>
+      {chat && chat.map((v: Chat, i: number) => <div key={i}>{v.message}</div>)}
     </div>
   )
 }

@@ -12,6 +12,7 @@ import {
 import { Storage } from "@plasmohq/storage"
 import { logModule } from "./log"
 import { getUrl } from "~const"
+import { chatModule } from "./chat"
 
 const storage = new Storage()
 
@@ -104,6 +105,7 @@ export const socketModule = (() => {
   const disconnect = async () => {
     if (!instance) return
     await instance.disconnect()
+    await chatModule.clear()
     instance = null
   }
 
