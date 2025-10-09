@@ -28,6 +28,7 @@ export const ChatElement = (props: Chat) => {
 }
 
 function IndexSidePanel() {
+  const chatRef = useRef<HTMLDivElement>(null)
   const [text, setText] = useState("")
   const [chat] = useStorage({
     key: "chat",
@@ -35,7 +36,6 @@ function IndexSidePanel() {
       area: "local"
     })
   })
-  const chatRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (chatRef.current) {
@@ -73,13 +73,14 @@ export function FallbackPage() {
       <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mb-4">
         <CreateIcon className="w-8 h-8 text-gray-300" />
       </div>
-      <h2 className="text-xl font-bold mb-2">방에 접속하지 않았습니다</h2>
+      <h2 className="text-xl font-bold mb-2">채팅방에 접속하지 않았습니다</h2>
+      <p className="text-gray-400">팝업에서 채팅방을 생성하거나 참가해보세요</p>
       <p className="text-gray-400 mb-6">
-        팝업에서 방을 생성하거나 참가해보세요
+        채팅방에 참가하면 다른 사람들과 실시간으로 대화할 수 있습니다
       </p>
       <button
         onClick={() => chrome.action.openPopup()}
-        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+        className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors">
         팝업 열기
       </button>
     </div>
