@@ -68,6 +68,26 @@ const ChatTimeSelector = () => {
   )
 }
 
+const OpenSidePanel = () => {
+  const openPanel = async () => {
+    chrome.sidePanel.open({
+      windowId: (await chrome.windows.getCurrent()).id
+    })
+  }
+
+  return (
+    <div>
+      <h1 className="text-xl font-bold mb-2">
+        채팅 패널 열기
+        <p className="text-sm text-gray-400">지나간 채팅 확인, 채팅창 고정</p>
+      </h1>
+      <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 w-32">
+        <Btn label="열기" onClick={openPanel} type="submit" />
+      </div>
+    </div>
+  )
+}
+
 export default function ChatPopup() {
   const [room] = useStorage("room")
   return (
@@ -76,6 +96,7 @@ export default function ChatPopup() {
         <div className="flex flex-col gap-8">
           <ChatTypeSelector />
           <ChatTimeSelector />
+          <OpenSidePanel />
         </div>
       </Content>
     </Full>
