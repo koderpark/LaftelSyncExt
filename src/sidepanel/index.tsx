@@ -36,7 +36,7 @@ function IndexSidePanel() {
   const chatRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (chatRef.current) {
-      chatRef.current.scrollIntoView({ behavior: "smooth" })
+      chatRef.current.scrollIntoView({ behavior: "instant" })
     }
   }, [chat])
 

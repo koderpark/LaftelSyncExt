@@ -6,7 +6,7 @@ const ColorMap = {
 const PaddingMap = {
   normal: "min-w-20",
   narrow: "px-2",
-  small: "w-24"
+  small: "w-[6rem]"
 }
 
 export function Btn({

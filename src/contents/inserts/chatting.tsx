@@ -89,10 +89,13 @@ export const Chatting = () => {
 
   return (
     <div className="absolute top-6 right-6 flex flex-col gap-3">
-      <ChatSender />
-      {chatType !== "none" &&
-        chat &&
-        chat.map((v: Chat, i: number) => <ChatElement key={i} {...v} />)}
+      {chatType == "normal" && (
+        <>
+          <ChatSender />
+          {chat &&
+            chat.map((v: Chat, i: number) => <ChatElement key={i} {...v} />)}
+        </>
+      )}
     </div>
   )
 }

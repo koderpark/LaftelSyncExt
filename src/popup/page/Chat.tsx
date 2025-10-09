@@ -13,13 +13,13 @@ const ChatTypeSelector = () => {
     <div>
       <h1 className="text-xl font-bold mb-2">표시 방식</h1>
       <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 ">
-        {/* <Btn
-          label="nicovideo식"
-          onClick={() => setChatType("nicovideo")}
-          type={chatType === "nicovideo" ? "submit" : "option"}
-        /> */}
         <Btn
-          label="오른쪽에 표시"
+          label="사이드바에 표시"
+          onClick={() => setChatType("side")}
+          type={chatType === "side" ? "submit" : "option"}
+        />
+        <Btn
+          label="화면 안에 표시"
           onClick={() => setChatType("normal")}
           type={chatType === "normal" ? "submit" : "option"}
         />
