@@ -5,7 +5,8 @@ const ColorMap = {
 
 const PaddingMap = {
   normal: "min-w-20",
-  narrow: "px-2"
+  narrow: "px-2",
+  small: "w-[6rem]"
 }
 
 export function Btn({
@@ -19,7 +20,7 @@ export function Btn({
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   submit?: boolean
   type?: "submit" | "option"
-  padding?: "normal" | "narrow"
+  padding?: "normal" | "narrow" | "small"
 }) {
   return (
     <button

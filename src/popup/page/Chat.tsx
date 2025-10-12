@@ -9,25 +9,33 @@ import { StringField } from "~component/form"
 
 const ChatTypeSelector = () => {
   const [chatType, setChatType] = useStorage("chatType", "normal")
+
+  const sidebarOpen = async () => {
+    setChatType("none")
+    await chrome.sidePanel.open({
+      windowId: (await chrome.windows.getCurrent()).id
+    })
+  }
+
   return (
     <div>
       <h1 className="text-xl font-bold mb-2">표시 방식</h1>
-      <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 ">
-        {/* <Btn
-          label="nicovideo식"
-          onClick={() => setChatType("nicovideo")}
-          type={chatType === "nicovideo" ? "submit" : "option"}
-        /> */}
-        <Btn
-          label="오른쪽에 표시"
-          onClick={() => setChatType("normal")}
-          type={chatType === "normal" ? "submit" : "option"}
-        />
-        <Btn
-          label="표시하지 않기"
-          onClick={() => setChatType("none")}
-          type={chatType === "none" ? "submit" : "option"}
-        />
+      <div className="grid grid-cols-3 gap-2">
+        <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 col-span-1">
+          <Btn label="사이드바 표시" onClick={sidebarOpen} type="option" />
+        </div>
+        <div className="flex gap-2 bg-gray-800 rounded-[12px] p-1 col-span-2">
+          <Btn
+            label="화면 안에 표시"
+            onClick={() => setChatType("normal")}
+            type={chatType === "normal" ? "submit" : "option"}
+          />
+          <Btn
+            label="표시하지 않기"
+            onClick={() => setChatType("none")}
+            type={chatType === "none" ? "submit" : "option"}
+          />
+        </div>
       </div>
     </div>
   )
